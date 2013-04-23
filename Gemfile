@@ -8,6 +8,7 @@ group :assets do
 end
 
 group :default do
+  gem 'openteam-commons'
   gem 'rails'
   gem 'sunspot_rails'
 end
