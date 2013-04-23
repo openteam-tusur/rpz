@@ -1,0 +1,17 @@
+app:
+  secret: SECRET
+
+errors:
+  key:    KEY
+  url:    http://errors.openteam.ru
+
+solr:
+  url:    http://localhost:8982/solr
+
+sso:
+  key:    KEY
+  secret: SECRET
+  url:    URL
+
+storage:
+  url:    URL

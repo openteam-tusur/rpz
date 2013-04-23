@@ -1,7 +1,14 @@
 *.swp
+.DS_Store
 /.bundle
 /bin
 /config/database.yml
+/config/deploy.yml
+/config/settings.yml
 /db/*.sqlite3
 /log/*.log
+/log/*.log.lck
+/public/assets
+/solr/data
+/solr/pids
 /tmp
