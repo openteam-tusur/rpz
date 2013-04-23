@@ -8,8 +8,13 @@ group :assets do
 end
 
 group :default do
+  gem 'inherited_resources'
+  gem 'nested_form'
   gem 'openteam-commons'
+  gem 'pg'
   gem 'rails'
+  gem 'russian'
+  gem 'simple_form'
   gem 'sunspot_rails'
 end
 
@@ -18,6 +23,7 @@ group :development do
   gem 'capistrano-unicorn',  :git => 'git://github.com/sosedoff/capistrano-unicorn'
   gem 'hirb'
   gem 'openteam-capistrano'
+  gem 'rails-erd'
   gem 'sqlite3'
   gem 'sunspot_solr'
 end
