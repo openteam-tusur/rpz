@@ -46,6 +46,7 @@ GEM
       builder
       json
     arel (3.0.2)
+    attribute_normalizer (1.1.0)
     builder (3.0.4)
     capistrano (2.14.2)
       highline
@@ -210,6 +211,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  attribute_normalizer
   capistrano-db-tasks!
   capistrano-unicorn!
   coffee-rails

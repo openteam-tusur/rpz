@@ -8,6 +8,7 @@ group :assets do
 end
 
 group :default do
+  gem 'attribute_normalizer'
   gem 'enumerize'
   gem 'inherited_resources'
   gem 'nested_form'

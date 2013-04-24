@@ -8,6 +8,7 @@ class Year < ActiveRecord::Base
 
   accepts_nested_attributes_for :autumn_semester, :spring_semester
   validates_presence_of :title
+  normalize_attribute :title
 
   delegate :starts_on, :to => :autumn_semester, :allow_nil => true
   delegate :ends_on,   :to => :spring_semester, :allow_nil => true
