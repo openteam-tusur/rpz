@@ -1,0 +1,9 @@
+<%= year.inspect %>
+<br />
+Недель: <%= year.weeks.count %>
+<br />
+с <%= year.starts_on %> по <%= year.ends_on %>
+<br />
+
+<%= link_to t('edit'), edit_year_path(year) %>
+<%= link_to t('remove'), year_path(year), :method => :delete %>

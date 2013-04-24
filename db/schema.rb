@@ -11,6 +11,36 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 0) do
+ActiveRecord::Schema.define(:version => 20130423055429) do
+
+  create_table "semesters", :force => true do |t|
+    t.string   "title"
+    t.integer  "year_id"
+    t.date     "starts_on"
+    t.date     "ends_on"
+    t.date     "breaks_on"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "semesters", ["year_id"], :name => "index_semesters_on_year_id"
+
+  create_table "weeks", :force => true do |t|
+    t.integer  "number"
+    t.integer  "year_id"
+    t.integer  "semester_id"
+    t.date     "starts_on"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "weeks", ["semester_id"], :name => "index_weeks_on_semester_id"
+  add_index "weeks", ["year_id"], :name => "index_weeks_on_year_id"
+
+  create_table "years", :force => true do |t|
+    t.string   "title"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
 end

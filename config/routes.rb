@@ -1,3 +1,4 @@
 WorkPlans::Application.routes.draw do
-  root to: 'welcome#index'
+  resources :years
+  root :to => 'years#index'
 end

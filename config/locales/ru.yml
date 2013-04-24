@@ -1,0 +1,25 @@
+ru:
+  cancel:            Отмена
+  create:            Создать
+  edit:              Изменить
+  new_year:          Добавить новый учебный год
+  save:              Сохранить
+  remove:            Удалить
+
+  activerecord:
+    attributes:
+      semester:
+        breaks_on:   Ломка расписания
+        ends_on:     Конец семестра
+        starts_on:   Начало семестра
+
+      year:
+        title:       Название
+
+      week:
+        starts_on:   Начало недели
+
+    models:
+      semester:      Семестр
+      week:          Учебная неделя
+      year:          Учебный год
