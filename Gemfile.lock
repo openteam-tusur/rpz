@@ -216,6 +216,7 @@ DEPENDENCIES
   capistrano-unicorn!
   coffee-rails
   enumerize
+  execjs
   fabrication
   hirb
   inherited_resources
@@ -234,3 +235,4 @@ DEPENDENCIES
   sunspot_rails
   sunspot_solr
   uglifier
+  unicorn

@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 group :assets do
   gem 'coffee-rails'
+  gem 'execjs'
   gem 'jquery-rails'
   gem 'sass-rails'
   gem 'uglifier'
@@ -13,7 +14,6 @@ group :default do
   gem 'inherited_resources'
   gem 'nested_form'
   gem 'openteam-commons'
-  gem 'pg'
   gem 'rails'
   gem 'russian'
   gem 'simple_form'
@@ -28,6 +28,11 @@ group :development do
   gem 'rails-erd'
   gem 'sqlite3'
   gem 'sunspot_solr'
+end
+
+group :production do
+  gem 'pg'
+  gem 'unicorn'
 end
 
 group :test do
