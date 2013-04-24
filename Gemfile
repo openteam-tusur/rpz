@@ -8,6 +8,7 @@ group :assets do
 end
 
 group :default do
+  gem 'enumerize'
   gem 'inherited_resources'
   gem 'nested_form'
   gem 'openteam-commons'
