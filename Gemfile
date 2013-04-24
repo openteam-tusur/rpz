@@ -14,6 +14,8 @@ group :default do
   gem 'inherited_resources'
   gem 'nested_form'
   gem 'openteam-commons'
+  gem 'pg'
+  gem 'progress_bar',         :require => false
   gem 'rails'
   gem 'russian'
   gem 'simple_form'

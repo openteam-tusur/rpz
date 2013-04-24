@@ -15,6 +15,10 @@ class Year < ActiveRecord::Base
 
   after_save :check_weeks
 
+  def year
+    starts_on.year
+  end
+
 private
 
   def check_weeks
