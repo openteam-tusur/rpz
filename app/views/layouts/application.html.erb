@@ -10,6 +10,11 @@
     <div class="main_wrapper">
       <h1><%= yield :title %></h1>
       <div class="main">
+        <% if user_signed_in? %>
+          <%= link_to 'Выйти', destroy_user_session_path %>
+        <% else %>
+          <%= link_to 'Войти', new_user_session_path %>
+        <% end %>
         <%= yield %>
       </div>
     </div>

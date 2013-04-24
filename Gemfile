@@ -12,6 +12,7 @@ end
 group :default do
   gem 'attribute_normalizer'
   gem 'enumerize'
+  gem 'esp-views'
   gem 'has_scope'
   gem 'inherited_resources'
   gem 'nested_form'
@@ -21,6 +22,7 @@ group :default do
   gem 'rails'
   gem 'russian'
   gem 'simple_form'
+  gem 'sso-auth'
   gem 'sunspot_rails'
 end
 
