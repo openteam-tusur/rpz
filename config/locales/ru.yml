@@ -14,12 +14,30 @@ ru:
         starts_on:   Начало семестра
 
       year:
-        title:       Название
+        title:       Название учебного года
 
       week:
         starts_on:   Начало недели
 
     models:
-      semester:      Семестр
-      week:          Учебная неделя
-      year:          Учебный год
+      semester:      семестр
+      week:          учебная неделя
+      year:          учебный год
+
+  enumerize:
+    semester:
+      title:
+        autumn:     Осенний семестр
+        spring:     Весенний семестр
+
+  simple_form:
+    placeholders:
+      autumn_semester:
+        breaks_on: Должен быть понедельником
+        ends_on:  Должен быть понедельником
+        starts_on: Первый учебный день
+
+      spring_semester:
+        breaks_on: Должен быть понедельником
+        ends_on:  Должен быть понедельником
+        starts_on: Первый учебный день

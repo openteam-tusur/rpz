@@ -1,21 +1,27 @@
 <%= simple_form_for resource do |f| %>
   <%= f.input :title %>
 
-  <%= f.simple_fields_for :autumn_semester do |as|%>
-    <%= as.object.title %>
-    <%= as.input :starts_on, :as => :string %>
-    <%= as.input :breaks_on, :as => :string %>
-    <%= as.input :ends_on, :as => :string %>
-  <% end %>
+  <fieldset>
+    <%= f.simple_fields_for :autumn_semester do |as|%>
+      <legend><%= as.object.title_text %></legend>
+      <%= as.input :starts_on, :as => :string, :input_html => { :class => 'datepicker' } %>
+      <%= as.input :breaks_on, :as => :string, :input_html => { :class => 'datepicker' } %>
+      <%= as.input :ends_on, :as => :string, :input_html => { :class => 'datepicker' } %>
+    <% end %>
+  </fieldset>
 
-  <%= f.simple_fields_for :spring_semester do |ss|%>
-    <%= ss.object.title %>
-    <%= ss.input :starts_on, :as => :string %>
-    <%= ss.input :breaks_on, :as => :string %>
-    <%= ss.input :ends_on, :as => :string %>
-  <% end %>
+  <fieldset>
+    <%= f.simple_fields_for :spring_semester do |ss|%>
+      <legend><%= ss.object.title_text %></legend>
+      <%= ss.input :starts_on, :as => :string, :input_html => { :class => 'datepicker' } %>
+      <%= ss.input :breaks_on, :as => :string, :input_html => { :class => 'datepicker' } %>
+      <%= ss.input :ends_on, :as => :string, :input_html => { :class => 'datepicker' } %>
+    <% end %>
+  </fieldset>
 
-  <%= f.submit t('create') %>
-  <%= link_to t('cancel'), :back %>
+  <div class="buttons">
+    <%= f.submit %>
+    <%= link_to t('cancel'), :back %>
+  </div>
 <% end %>
 

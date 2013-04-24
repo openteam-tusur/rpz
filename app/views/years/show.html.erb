@@ -1,1 +1,6 @@
+<%= content_for :title, resource.title %>
 <%= render resource %>
+
+<% resource.semesters.each do |semester| %>
+  <div><%= semester %></div>
+<% end %>

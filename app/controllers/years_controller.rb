@@ -3,6 +3,10 @@
 class YearsController < ApplicationController
   inherit_resources
 
+  has_scope :sorted_by_title, :default => 1 do |controller, scope|
+    scope.order(:title)
+  end
+
 private
 
   alias_method :old_build_resource, :build_resource

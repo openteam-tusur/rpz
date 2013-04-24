@@ -1,0 +1,116 @@
+@import 'compass/reset'
+@import 'compass/utilities'
+@import 'compass/css3'
+@import url(http://fonts.googleapis.com/css?family=PT+Sans&subset=latin,cyrillic)
+
+html
+  height: 100%
+
+body
+  background: image_url('irongrip.png') repeat
+  color: #060c39
+  font-family: 'PT Sans', sans-serif
+  font-size: 14px
+  line-height: 18px
+  padding: 25px
+
+a
+  color: #04508d
+
+  &:hover
+    color: #0463ae
+    text-decoration: none
+
+  &.new_link
+    display: block
+    margin: 0 0 20px 0
+
+h1
+  +single-text-shadow(0px, 0px, 5px, false, #000)
+  color: #ddd
+  font-size: 26px
+  line-height: 30px
+  text-align: center
+  margin: 0 0 15px 0
+
+.main_wrapper
+  +single-box-shadow(#000, 0px, 0px, 15px, 5px)
+  background: image_url('wood.jpg') no-repeat
+  padding: 20px
+
+  .main
+    +min-height(800px)
+    background: rgba(#eee, 0.8)
+    padding: 15px
+
+.empty
+  font-size: 18px
+  text-align: center
+
+.year_item
+  margin: 25px 0
+
+  .title
+    font-size: 18px
+    margin: 0 20px 0 0
+
+  a
+    margin: 0 3px
+
+form
+  +clearfix
+
+  label
+    display: block
+    margin: 0 0 0 3px
+
+  .error
+    +inline-block
+    color: #a12119
+    font-size: 14px
+
+    &:before
+      +inline-block
+      content: '\2190'
+      margin: 0 5px 0 10px
+
+  div.input
+    margin: 0 0 10px 0
+    position: relative
+
+    input
+      border: 1px solid #060c39
+      padding: 3px 5px
+      line-height: 20px
+      width: 190px
+
+    img
+      left: 180px
+      position: absolute
+      top: 25px
+
+      &:hover
+        cursor: pointer
+
+  .buttons
+    +clearfix
+    width: 100%
+
+    input
+      font-size: 18px
+      margin: 0 15px 0 0
+
+  fieldset
+    float: left
+    margin: 15px 0
+    padding: 15px 15px 15px 0
+    width: 375px
+
+    legend
+      display: block
+      font-size: 18px
+      margin: 0 0 15px 0
+
+    div
+      +clearfix
+

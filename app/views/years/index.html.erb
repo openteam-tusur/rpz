@@ -1,2 +1,8 @@
-<%= render collection %>
-<%= link_to t('new_year'), new_resource_path %>
+<%= content_for :title, 'Список учебных годов' %>
+<%= link_to t('new_year'), new_resource_path, :class => 'new_link' %>
+
+<% if collection.any? %>
+  <%= render collection %>
+<% else %>
+  <div class="empty">Нет ни одного учебного года</div>
+<% end %>

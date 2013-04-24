@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 group :assets do
   gem 'coffee-rails'
   gem 'execjs'
+  gem 'compass-rails'
   gem 'jquery-rails'
   gem 'sass-rails'
   gem 'uglifier'
@@ -11,6 +12,7 @@ end
 group :default do
   gem 'attribute_normalizer'
   gem 'enumerize'
+  gem 'has_scope'
   gem 'inherited_resources'
   gem 'nested_form'
   gem 'openteam-commons'

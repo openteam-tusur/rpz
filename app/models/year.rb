@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 class Year < ActiveRecord::Base
   attr_accessible :title, :autumn_semester_attributes, :spring_semester_attributes
 
@@ -19,6 +21,13 @@ class Year < ActiveRecord::Base
     starts_on.year
   end
 
+  def to_s
+    ''.tap do |s|
+      s << title
+      s << " (#{weeks.count} нед. с #{I18n.l starts_on, :format => :long} по #{I18n.l ends_on, :format => :long})"
+    end
+  end
+
 private
 
   def check_weeks
@@ -36,9 +45,15 @@ private
   end
 
   def create_weeks(dates = new_week_starts_ons)
-    dates.each_with_index do |date, index|
-      weeks.find_or_create_by_number_and_starts_on :starts_on => date, :number => index+1
+    dates.each do |date|
+      weeks.find_or_create_by_semester_id_and_starts_on :semester_id => get_semester_id(date), :starts_on => date
     end
+  end
+
+  def get_semester_id(date)
+    return autumn_semester.id if date.between?(autumn_semester.starts_on, autumn_semester.ends_on)
+    return spring_semester.id if date.between?(spring_semester.starts_on, spring_semester.ends_on)
+    nil
   end
 
   def old_week_starts_ons
