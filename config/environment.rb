@@ -2,4 +2,4 @@
 require File.expand_path('../application', __FILE__)
 
 # Initialize the rails application
-WorkPlans::Application.initialize!
+Rpz::Application.initialize!

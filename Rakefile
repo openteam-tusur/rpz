@@ -4,4 +4,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-WorkPlans::Application.load_tasks
+Rpz::Application.load_tasks

@@ -1,4 +1,4 @@
-WorkPlans::Application.routes.draw do
+Rpz::Application.routes.draw do
   resources :years
   root :to => 'years#index'
 end
