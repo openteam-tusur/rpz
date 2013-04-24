@@ -11,7 +11,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130424060033) do
+ActiveRecord::Schema.define(:version => 20130424102540) do
+
+  create_table "chairs", :force => true do |t|
+    t.text     "title"
+    t.string   "abbr"
+    t.string   "slug"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "faculties", :force => true do |t|
     t.string   "title"
@@ -31,6 +39,12 @@ ActiveRecord::Schema.define(:version => 20130424060033) do
     t.integer  "payment_students_count"
     t.datetime "created_at",             :null => false
     t.datetime "updated_at",             :null => false
+    t.integer  "subspeciality_id"
+    t.string   "speciality_code"
+    t.text     "speciality_title"
+    t.text     "subspeciality_title"
+    t.integer  "chair_id"
+    t.integer  "plan_year"
   end
 
   add_index "groups", ["faculty_id"], :name => "index_groups_on_faculty_id"

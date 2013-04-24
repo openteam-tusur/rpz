@@ -40,9 +40,7 @@ class GroupImporter
   end
 
   def self.build_group_for_first_course(group)
-    new_group = group.faculty.groups.new
-    new_group.year = group.year
-    new_group.number =
+    new_group_number =
       case group.number
       when /^\d.\d/
         group.number[2]=year.year.to_s.last
@@ -60,6 +58,7 @@ class GroupImporter
         warn "не могу понять как сгенерировать 1-ый курс для группы #{group.number}"
         return
       end
+    new_group = group.faculty.groups.find_or_initialize_by_number_and_year_id(new_group_number, year.id)
     new_group.year_forming = year.year
     new_group.save!
   end

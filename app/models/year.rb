@@ -7,6 +7,7 @@ class Year < ActiveRecord::Base
   has_one :spring_semester, :foreign_key => :year_id, :class_name => Semester, :conditions => { :title => :spring }
   has_one :autumn_semester, :foreign_key => :year_id, :class_name => Semester, :conditions => { :title => :autumn }
   has_many :weeks
+  has_many :groups
 
   accepts_nested_attributes_for :autumn_semester, :spring_semester
   validates_presence_of :title
