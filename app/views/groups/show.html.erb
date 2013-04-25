@@ -1,7 +1,16 @@
 <%= content_for :title, "Группа #{@group.number} #{@faculty.abbr}" %>
 
-<%= resource %>
-<%= resource.inspect %>
+<div><%= Group.human_attribute_name(:number) %>: <%= resource %></div>
+<div><%= Group.human_attribute_name(:course) %>: <%= "#{resource.course} курс" %></div>
+<div><%= Group.human_attribute_name(:year_forming) %>: <%= resource.year_forming %></div>
+<div><%= Group.human_attribute_name(:budget_students_count) %>: <%= resource.budget_students_count %></div>
+<div><%= Group.human_attribute_name(:payment_students_count) %>: <%= resource.payment_students_count %></div>
+<div><%= Group.human_attribute_name(:speciality_code) %>: <%= resource.speciality_code %></div>
+<div><%= Group.human_attribute_name(:speciality_title) %>: <%= resource.speciality_title %></div>
+<div><%= Group.human_attribute_name(:subspeciality_title) %>: <%= resource.subspeciality_title %></div>
+
+<%= link_to t('edit'), edit_resource_path %>
+<%= link_to t('remove'), resource_path, :method => :delete, :confirm => t('are_you_sure') %>
 
 <% [resource.semesters.autumn, resource.semesters.spring].flatten.each do |semester| %>
   <div class='<%= semester.semester.title %>'>

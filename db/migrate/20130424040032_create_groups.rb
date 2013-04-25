@@ -6,7 +6,7 @@ class CreateGroups < ActiveRecord::Migration
       t.string :number
       t.integer :year_forming
       t.integer :course
-      t.integer :budget_studens_count
+      t.integer :budget_students_count
       t.integer :payment_students_count
 
       t.timestamps

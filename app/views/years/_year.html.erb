@@ -1,5 +1,5 @@
 <div class="item">
   <%= link_to year, year, :class => 'title' %>
   <%= link_to t('edit'), edit_year_path(year) %>
-  <%= link_to t('remove'), year_path(year), :method => :delete %>
+  <%= link_to t('remove'), year_path(year), :method => :delete, :confirm => t('are_you_sure') %>
 </div>
