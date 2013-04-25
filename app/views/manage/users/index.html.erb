@@ -1,5 +1,18 @@
 <%= content_for :title, 'Управление пользователями' %>
 
+<%= form_tag manage_users_path, method: :get do %>
+  <div class='search'>
+    <%= text_field_tag :q,
+      params[:q],
+      placeholder: 'ФИО, email' %>
+  </div>
+
+  <div class='action'>
+    <%= submit_tag 'Поиск' %>
+  </div>
+<% end %>
+
+
 <ul class="collection_list collapser">
   <% @users.each do |user| %>
     <li class="user">

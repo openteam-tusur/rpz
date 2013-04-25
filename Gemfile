@@ -15,6 +15,7 @@ group :default do
   gem 'esp-views'
   gem 'has_scope'
   gem 'inherited_resources'
+  gem 'kaminari'
   gem 'nested_form'
   gem 'openteam-commons'
   gem 'pg'
