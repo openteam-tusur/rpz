@@ -17,21 +17,9 @@ class DisciplineImporter
           education.cycle_title = discipline_attributes['cycle']['title']
           education.cycle_code = discipline_attributes['cycle']['code']
           education.save!
-          p discipline_attributes
+          create_trainings(education, discipline_attributes['loadings'])
+          create_checks(education, discipline_attributes['checks'])
         end
-        return
-      end
-      if (response = subspeciality_response(group)) != 'null'
-        subspeciality_attributes = JSON.parse(response)
-        group.subspeciality_id = subspeciality_attributes['id']
-        group.subspeciality_title = subspeciality_attributes['title']
-        group.plan_year = subspeciality_attributes['year']
-        group.speciality_code = subspeciality_attributes['speciality']['code']
-        group.speciality_title = subspeciality_attributes['speciality']['title']
-        group.chair = chair(subspeciality_attributes['subdepartment'])
-        group.save
-      else
-        next
       end
     end
     nil
@@ -49,7 +37,7 @@ class DisciplineImporter
       open(URI.encode("#{Settings['plans.url']}/api/v1/disciplines/#{group.subspeciality_id}/#{semester.number}")).read
     rescue
       warn "что-то  plans не отвечают #{group.number}"
-      return []
+      return "[]"
     end
   end
 
@@ -59,6 +47,23 @@ class DisciplineImporter
     chair.title = params['title']
     chair.save!
     chair
+  end
+
+  def self.create_trainings(education, options)
+    options.each do |training_attributes|
+      training = education.trainings.find_or_initialize_by_kind(training_attributes['kind'])
+      training.title = training_attributes['kind_text']
+      training.planned_loading = training_attributes['value']
+      training.save!
+    end
+  end
+
+  def self.create_checks(education, options)
+    options.each do |check_attributes|
+      check = education.checks.find_or_initialize_by_kind(check_attributes['kind'])
+      check.title = check_attributes['kind_text']
+      check.save!
+    end
   end
 
 end
