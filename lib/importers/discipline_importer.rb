@@ -3,7 +3,7 @@
 require 'open-uri'
 require 'progress_bar'
 
-class DisciplineImporter
+class DisciplineImporter < BaseImporter
 
   def self.sync
     bar = ProgressBar.new(year.groups.with_subspeciality.count/10)
@@ -27,11 +27,6 @@ class DisciplineImporter
 
   private
 
-  def self.year
-    raise "Нет учебного года" unless Year.any?
-    @year ||= Year.all.sort_by(&:starts_on).last
-  end
-
   def self.disciplines_response(group, semester)
     begin
       open(URI.encode("#{Settings['plans.url']}/api/v1/disciplines/#{group.subspeciality_id}/#{semester.number}")).read
@@ -39,14 +34,6 @@ class DisciplineImporter
       warn "что-то  plans не отвечают #{group.number}"
       return "[]"
     end
-  end
-
-
-  def self.chair(params)
-    chair = Chair.find_or_initialize_by_abbr(params['abbr'])
-    chair.title = params['title']
-    chair.save!
-    chair
   end
 
   def self.create_trainings(education, options)

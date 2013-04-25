@@ -3,7 +3,7 @@
 require 'open-uri'
 require 'progress_bar'
 
-class SubspecialityImporter
+class SubspecialityImporter < BaseImporter
 
   def self.sync
     bar = ProgressBar.new(year.groups.count/10)
@@ -34,17 +34,6 @@ class SubspecialityImporter
       warn "что-то  plans не отвечают #{group.number}"
       return 'null'
     end
-  end
-
-  def self.year
-    @year ||= Year.all.sort_by(&:starts_on).last
-  end
-
-  def self.chair(params)
-    chair = Chair.find_or_initialize_by_abbr(params['abbr'])
-    chair.title = params['title']
-    chair.save!
-    chair
   end
 
 end

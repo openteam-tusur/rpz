@@ -3,7 +3,7 @@
 require 'open-uri'
 require 'progress_bar'
 
-class GroupImporter
+class GroupImporter < BaseImporter
   attr_accessor :bar
 
   def self.sync
@@ -25,11 +25,6 @@ class GroupImporter
 
   def self.contingent_response
     open("#{Settings['students.url']}/api/v1/groups").read
-  end
-
-  def self.year
-    raise "Нет учебного года" unless Year.any?
-    @year ||= Year.all.sort_by(&:starts_on).last
   end
 
   def self.faculty(params)
