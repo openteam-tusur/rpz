@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130424102540) do
+ActiveRecord::Schema.define(:version => 20130425012636) do
 
   create_table "chairs", :force => true do |t|
     t.text     "title"
@@ -28,6 +28,22 @@ ActiveRecord::Schema.define(:version => 20130424102540) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  create_table "group_semesters", :force => true do |t|
+    t.integer  "group_id"
+    t.integer  "starts_on_week_id"
+    t.integer  "breaks_on_week_id"
+    t.integer  "ends_on_week_id"
+    t.integer  "semester_id"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+  end
+
+  add_index "group_semesters", ["breaks_on_week_id"], :name => "index_group_semesters_on_breaks_on_week_id"
+  add_index "group_semesters", ["ends_on_week_id"], :name => "index_group_semesters_on_ends_on_week_id"
+  add_index "group_semesters", ["group_id"], :name => "index_group_semesters_on_group_id"
+  add_index "group_semesters", ["semester_id"], :name => "index_group_semesters_on_semester_id"
+  add_index "group_semesters", ["starts_on_week_id"], :name => "index_group_semesters_on_starts_on_week_id"
 
   create_table "groups", :force => true do |t|
     t.integer  "faculty_id"

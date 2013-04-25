@@ -8,6 +8,10 @@ class Semester < ActiveRecord::Base
   belongs_to :year
   has_many :weeks
 
+  has_one :starts_on_week, class_name: 'Week', conditions: proc { { starts_on: self.starts_on } }
+  has_one :breaks_on_week, class_name: 'Week', conditions: proc { { starts_on: self.breaks_on } }
+  has_one :ends_on_week, class_name: 'Week', conditions: proc { { starts_on: self.ends_on } }
+
   validates_presence_of :breaks_on, :ends_on, :starts_on
 
   enumerize :title, :in => [:spring, :autumn]
@@ -19,4 +23,5 @@ class Semester < ActiveRecord::Base
       s << " Всего #{weeks.count} нед."
     end
   end
+
 end
