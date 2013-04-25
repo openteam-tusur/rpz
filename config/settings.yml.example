@@ -15,3 +15,6 @@ sso:
 
 storage:
   url:    URL
+
+students:
+  url:    http://students.url

@@ -1,0 +1,9 @@
+<%= simple_form_for [association_chain, resource].flatten do |f| %>
+  <%= f.input :number %>
+  <%= f.input :year_forming %>
+
+  <div class="buttons">
+    <%= f.submit %>
+    <%= link_to t('cancel'), :back %>
+  </div>
+<% end %>

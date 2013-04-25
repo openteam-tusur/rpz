@@ -1,11 +1,13 @@
 class Faculty < ActiveRecord::Base
   attr_accessible :abbr, :title
+
+  has_many :groups, :dependent => :destroy, :order => 'groups.course ASC, groups.number ASC'
+
   before_save :set_slug
 
-  has_many :groups, :dependent => :destroy
+  alias_attribute :to_s, :abbr
 
-  private
-
+private
   def set_slug
     self.slug = Russian.translit(self.abbr).downcase
   end

@@ -3,11 +3,23 @@ ru:
   create:            Создать
   edit:              Изменить
   new_year:          Добавить новый учебный год
+  new_group:         Добавить новую группу
   save:              Сохранить
   remove:            Удалить
 
+  groups:
+    few: "%{count} группы"
+    many: "%{count} групп"
+    one: "%{count} группа"
+    other: "%{count} групп"
+
   activerecord:
     attributes:
+      group:
+        course:      Курс
+        number:      Номер группы
+        year_forming: Год набора
+
       semester:
         breaks_on:   Ломка расписания
         ends_on:     Конец семестра
@@ -20,6 +32,7 @@ ru:
         starts_on:   Начало недели
 
     models:
+      group:         группу
       semester:      семестр
       week:          учебная неделя
       year:          учебный год

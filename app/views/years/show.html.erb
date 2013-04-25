@@ -2,5 +2,12 @@
 <%= render resource %>
 
 <% resource.semesters.each do |semester| %>
-  <div><%= semester %></div>
+  <div class='item'><%= semester %></div>
+<% end %>
+
+<% resource.faculties.each do |faculty| %>
+  <div class='item block <%= faculty.slug %>'>
+    <%= link_to faculty, year_faculty_path(@year, faculty), :title => faculty.title, :class => 'title' %>
+    <%= t :groups, :count => faculty.groups.count %>
+  </div>
 <% end %>

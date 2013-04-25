@@ -1,0 +1,3 @@
+<%= content_for :title, "Группы #{params[:by_course].match(/\d+/)[0]} курса #{@faculty.abbr}" %>
+
+<%= render collection %>

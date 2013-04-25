@@ -1,17 +1,29 @@
+# encoding: utf-8
+
 class Group < ActiveRecord::Base
+  attr_accessible :budget_studens_count, :course, :number, :payment_students_count, :year_forming
+
+  belongs_to :chair
   belongs_to :faculty
   belongs_to :year
-  belongs_to :chair
-  attr_accessible :budget_studens_count, :course, :number, :payment_students_count
-  validates_presence_of :faculty, :year, :number
 
   has_many :semesters, class_name: 'GroupSemester', dependent: :destroy
+
+  attr_accessible :budget_studens_count, :course, :number, :payment_students_count
+
+  validates_presence_of :faculty, :year, :number, :year_forming
 
   before_save :set_course
 
   after_save :create_semesters
 
-  private
+  scope :by_course, ->(course) {where(:course => course.match(/\d+/)[0]) }
+
+  def to_s
+    "гр. #{number}"
+  end
+
+private
 
   def set_course
     self.course = self.year.year - year_forming + 1

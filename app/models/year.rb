@@ -3,13 +3,16 @@
 class Year < ActiveRecord::Base
   attr_accessible :title, :autumn_semester_attributes, :spring_semester_attributes
 
-  has_many :semesters
-  has_one :spring_semester, :foreign_key => :year_id, :class_name => Semester, :conditions => { :title => :spring }
-  has_one :autumn_semester, :foreign_key => :year_id, :class_name => Semester, :conditions => { :title => :autumn }
-  has_many :weeks
+  has_many :faculties, :through => :groups, :uniq => true, :order => 'faculties.abbr ASC'
   has_many :groups
+  has_many :semesters
+  has_many :weeks
+
+  has_one :autumn_semester, :foreign_key => :year_id, :class_name => Semester, :conditions => { :title => :autumn }
+  has_one :spring_semester, :foreign_key => :year_id, :class_name => Semester, :conditions => { :title => :spring }
 
   accepts_nested_attributes_for :autumn_semester, :spring_semester
+
   validates_presence_of :title
   normalize_attribute :title
 
