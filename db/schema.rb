@@ -83,14 +83,15 @@ ActiveRecord::Schema.define(:version => 20130425084759) do
     t.integer  "course"
     t.integer  "budget_studens_count"
     t.integer  "payment_students_count"
-    t.datetime "created_at",             :null => false
-    t.datetime "updated_at",             :null => false
+    t.datetime "created_at",                                :null => false
+    t.datetime "updated_at",                                :null => false
     t.integer  "subspeciality_id"
     t.string   "speciality_code"
     t.text     "speciality_title"
     t.text     "subspeciality_title"
     t.integer  "chair_id"
     t.integer  "plan_year"
+    t.boolean  "archived",               :default => false
   end
 
   add_index "groups", ["faculty_id"], :name => "index_groups_on_faculty_id"

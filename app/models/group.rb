@@ -17,15 +17,20 @@ class Group < ActiveRecord::Base
 
   after_save :create_semesters
 
-  scope :by_course, ->(course) {where(:course => course.match(/\d+/)[0]) }
+  scope :archived, ->(archived) {where(:archived => true)}
+  scope :by_course, ->(course) {not_archived.where(:course => course.match(/\d+/)[0]) }
+  scope :not_archived, -> {where(:archived => false)}
+  scope :with_subspeciality, -> { where('subspeciality_id IS NOT NULL') }
 
   def to_s
     "гр. #{number}"
   end
 
-  scope :with_subspeciality, -> { where('subspeciality_id IS NOT NULL') }
-
-  private
+private
+  def change_archived_state
+    self.archived = (archived? ? false : true)
+    self.save
+  end
 
   def set_course
     self.course = self.year.year - year_forming + 1

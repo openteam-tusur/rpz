@@ -1,3 +1,7 @@
-<%= content_for :title, "Группы #{params[:by_course].match(/\d+/)[0]} курса #{@faculty.abbr}" %>
+<% if params[:archived] %>
+  <%= content_for :title, "Архивные группы #{@faculty.abbr}" %>
+<% else %>
+  <%= content_for :title, "Группы #{params[:by_course].match(/\d+/)[0]} курса #{@faculty.abbr}" %>
+<% end %>
 
 <%= render collection %>
