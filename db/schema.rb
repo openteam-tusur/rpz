@@ -87,13 +87,12 @@ ActiveRecord::Schema.define(:version => 20130425075512) do
 
   create_table "permissions", :force => true do |t|
     t.integer  "user_id"
-    t.integer  "faculty_id"
     t.string   "role"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+    t.integer  "context_id"
+    t.string   "context_type"
   end
-
-  add_index "permissions", ["user_id", "role", "faculty_id"], :name => "by_user_and_role_and_faculty"
 
   create_table "semesters", :force => true do |t|
     t.string   "title"

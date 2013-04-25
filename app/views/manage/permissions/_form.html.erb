@@ -1,0 +1,5 @@
+<%= simple_form_for resource, :url => manage_user_permissions_path(@user) do |f| %>
+  <%= f.input :context_id, :collection => Faculty.order("title").map{|f| [f.title, f.id]}, :as => :select %>
+  <%= f.input :role, :include_blank => false %>
+  <%= f.submit 'Добавить права' %>
+<% end %>

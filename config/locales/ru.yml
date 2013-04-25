@@ -1,11 +1,10 @@
 ru:
   cancel:            Отмена
   create:            Создать
-  edit:              Изменить
+  confirm:           Вы уверены?
   new_year:          Добавить новый учебный год
   new_group:         Добавить новую группу
   save:              Сохранить
-  remove:            Удалить
 
   groups:
     few: "%{count} группы"
@@ -19,6 +18,9 @@ ru:
         course:      Курс
         number:      Номер группы
         year_forming: Год набора
+
+      permission:
+        context_id:  Факультет
 
       semester:
         breaks_on:   Ломка расписания
@@ -38,6 +40,11 @@ ru:
       year:          учебный год
 
   enumerize:
+    permission:
+     role:
+      manager:       Менеджер
+      operator:      Оператор
+
     semester:
       title:
         autumn:     Осенний семестр
