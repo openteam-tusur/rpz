@@ -23,7 +23,9 @@ class Group < ActiveRecord::Base
     "гр. #{number}"
   end
 
-private
+  scope :with_subspeciality, -> { where('subspeciality_id IS NOT NULL') }
+
+  private
 
   def set_course
     self.course = self.year.year - year_forming + 1

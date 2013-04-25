@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130425012636) do
+ActiveRecord::Schema.define(:version => 20130425075512) do
 
   create_table "chairs", :force => true do |t|
     t.text     "title"
@@ -20,6 +20,26 @@ ActiveRecord::Schema.define(:version => 20130425012636) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  create_table "disciplines", :force => true do |t|
+    t.text     "title"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "educations", :force => true do |t|
+    t.integer  "group_semester_id"
+    t.integer  "discipline_id"
+    t.integer  "chair_id"
+    t.string   "cycle_code"
+    t.text     "cycle_title"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+  end
+
+  add_index "educations", ["chair_id"], :name => "index_educations_on_chair_id"
+  add_index "educations", ["discipline_id"], :name => "index_educations_on_discipline_id"
+  add_index "educations", ["group_semester_id"], :name => "index_educations_on_group_semester_id"
 
   create_table "faculties", :force => true do |t|
     t.string   "title"
