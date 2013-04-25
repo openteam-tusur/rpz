@@ -1,6 +1,8 @@
 <%= simple_form_for [association_chain, resource].flatten do |f| %>
   <%= f.input :number %>
   <%= f.input :year_forming %>
+  <%= f.input :budget_studens_count %>
+  <%= f.input :payment_students_count %>
 
   <div class="buttons">
     <%= f.submit %>

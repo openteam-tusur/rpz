@@ -15,8 +15,10 @@ ru:
   activerecord:
     attributes:
       group:
+        budget_studens_count: Кол-во бюджетных мест
         course:      Курс
         number:      Номер группы
+        payment_students_count: Кол-во платных мест
         year_forming: Год набора
 
       permission:

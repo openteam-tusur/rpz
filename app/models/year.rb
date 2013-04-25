@@ -5,7 +5,7 @@ class Year < ActiveRecord::Base
 
   has_many :faculties, :through => :groups, :uniq => true, :order => 'faculties.abbr ASC'
   has_many :groups
-  has_many :semesters
+  has_many :semesters, :order => 'semesters.title ASC'
   has_many :weeks
 
   has_one :autumn_semester, :foreign_key => :year_id, :class_name => Semester, :conditions => { :title => :autumn }
