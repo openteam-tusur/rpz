@@ -2,4 +2,5 @@
   <%= f.input :context_id, :collection => Faculty.order("title").map{|f| [f.title, f.id]}, :as => :select %>
   <%= f.input :role, :include_blank => false %>
   <%= f.submit 'Добавить права' %>
+  <%= link_to t('cancel'), :back %>
 <% end %>
