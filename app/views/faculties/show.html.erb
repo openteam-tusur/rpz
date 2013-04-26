@@ -6,6 +6,7 @@
 <% resource.groups.group_by(&:course).each do |course, groups| %>
   <div class='item block'>
     <%= link_to "#{course} курс", scoped_year_faculty_groups_path(@year, @faculty, :by_course => "course_#{course}"), :class => 'title' %>
-    <%= t :groups, :count => groups.count %>
+    <span><%= t :groups, :count => groups.count %></span>
+    <span><%= t :groups, :count => resource.groups.by_course(course).verified.count %> не выверены сроки и контингент</span>
   </div>
 <% end %>

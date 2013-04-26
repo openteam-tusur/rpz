@@ -8,6 +8,7 @@
 <% resource.faculties.each do |faculty| %>
   <div class='item block <%= faculty.slug %>'>
     <%= link_to faculty, year_faculty_path(@year, faculty), :title => faculty.title, :class => 'title' %>
-    <%= t :groups, :count => faculty.groups.count %>
+    <span><%= t :groups, :count => faculty.groups.count %></span>
+    <span><%= t :groups, :count => faculty.groups.verified.count %> не выверены сроки и контингент</span>
   </div>
 <% end %>

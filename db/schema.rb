@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130425084759) do
+ActiveRecord::Schema.define(:version => 20130426051315) do
 
   create_table "chairs", :force => true do |t|
     t.text     "title"
@@ -92,6 +92,7 @@ ActiveRecord::Schema.define(:version => 20130425084759) do
     t.integer  "chair_id"
     t.integer  "plan_year"
     t.boolean  "archived",               :default => false
+    t.boolean  "verified",               :default => false
   end
 
   add_index "groups", ["faculty_id"], :name => "index_groups_on_faculty_id"

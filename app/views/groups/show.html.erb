@@ -12,6 +12,14 @@
 <%= link_to t('edit'), edit_resource_path %>
 <%= link_to t('remove'), resource_path, :method => :delete, :confirm => t('are_you_sure') %>
 
+<% if @group.verified? %>
+  <%= t('verified') %>
+  <%= link_to t('change'), change_verified_state_year_faculty_group_path(@year, @faculty, @group) %>
+<% else %>
+  <%= t('unverified') %>
+  <%= link_to t('change'), change_verified_state_year_faculty_group_path(@year, @faculty, @group) %>
+<% end %>
+
 <% [resource.semesters.autumn, resource.semesters.spring].flatten.each do |semester| %>
   <div class='<%= semester.semester.title %>'>
     <h2><%= semester.semester.title_text %></h2>
@@ -21,7 +29,7 @@
         <th rowspan="2">Вид<br />обучения</th>
         <th rowspan="2" class="week">Всего<br />часов</th>
         <th rowspan="2" class="week">Итог</th>
-        <th colspan="<%= semester.weeks_count %>" class="center">Распределение занятий</th>
+        <th colspan="<%#= semester.weeks_count %>" class="center">Распределение занятий</th>
         <th rowspan="2">Преподаватель</th>
         <th rowspan="2">Кафедра</th>
         <th rowspan="2">Форма<br />учёта</th>

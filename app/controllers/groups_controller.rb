@@ -6,7 +6,7 @@ class GroupsController < ApplicationController
   end
 
   actions :index, :show, :new, :create, :edit, :update
-  custom_actions :resource => :change_archived_state
+  custom_actions :resource => [:change_archived_state, :change_verified_state]
 
   has_scope :by_course
   has_scope :archived
@@ -15,6 +15,13 @@ class GroupsController < ApplicationController
     change_archived_state!{
       @group.change_archived_state
       redirect_to :action => :index, :by_course => "course_#{@group.course}" and return
+    }
+  end
+
+  def change_verified_state
+    change_verified_state!{
+      @group.change_verified_state
+      redirect_to :action => :show and return
     }
   end
 

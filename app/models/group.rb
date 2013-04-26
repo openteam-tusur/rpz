@@ -16,7 +16,8 @@ class Group < ActiveRecord::Base
   after_save :create_semesters
 
   scope :archived, ->(archived) {where(:archived => true)}
-  scope :by_course, ->(course) {not_archived.where(:course => course.match(/\d+/)[0]) }
+  scope :verified, ->{ where(:verified => false) }
+  scope :by_course, ->(course) {not_archived.where(:course => course.to_s.match(/\d+/)[0]) }
   scope :not_archived, -> {where(:archived => false)}
   scope :with_subspeciality, -> { where('subspeciality_id IS NOT NULL') }
 
@@ -26,6 +27,11 @@ class Group < ActiveRecord::Base
 
   def change_archived_state
     self.archived = (archived? ? false : true)
+    self.save
+  end
+
+  def change_verified_state
+    self.verified = (verified? ? false : true)
     self.save
   end
 
