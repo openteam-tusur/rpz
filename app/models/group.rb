@@ -24,12 +24,12 @@ class Group < ActiveRecord::Base
     "гр. #{number}"
   end
 
-private
   def change_archived_state
     self.archived = (archived? ? false : true)
     self.save
   end
 
+private
   def set_course
     self.course = self.year.year - year_forming + 1
   end
