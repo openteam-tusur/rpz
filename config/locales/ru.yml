@@ -3,10 +3,12 @@ ru:
   archive:           Архивировать
   unarchive:         Вернуть
   cancel:            Отмена
-  create:            Создать
   confirm:           Вы уверены?
-  new_year:          Добавить новый учебный год
+  create:            Создать
+  edit:              Редактировать
   new_group:         Добавить новую группу
+  new_year:          Добавить новый учебный год
+  remove:            Удалить
   save:              Сохранить
 
   groups:
