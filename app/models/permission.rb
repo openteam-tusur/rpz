@@ -6,6 +6,7 @@ class Permission < ActiveRecord::Base
   belongs_to :user
 
   validates_presence_of :context_id
+  validates_uniqueness_of :user_id, scope: [:context_id]
 
   before_create :set_context_type
 
