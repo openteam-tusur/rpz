@@ -33,6 +33,11 @@ ru:
         subspeciality_title:    Название профиля
         year_forming: Год набора
 
+      group_semester:
+        starts_on_week:         Первая неделя
+        breaks_on_week:         Неделя ломки расписания
+        ends_on_week:           Последняя неделя
+
       permission:
         context_id:  Факультет
 

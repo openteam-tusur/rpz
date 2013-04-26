@@ -1,4 +1,6 @@
 class GroupSemester < ActiveRecord::Base
+  attr_accessible :semester_id, :starts_on_week_id, :breaks_on_week_id, :ends_on_week_id
+
   belongs_to :group
   belongs_to :starts_on_week, :class_name => "Week"
   belongs_to :breaks_on_week, :class_name => "Week"

@@ -4,6 +4,16 @@
   <%= f.input :budget_students_count %>
   <%= f.input :payment_students_count %>
 
+  <%= f.simple_fields_for :semesters do |s|%>
+    <fieldset>
+      <legend><%= s.object.semester.title_text %></legend>
+      <%= s.input :semester_id, :as => :hidden %>
+      <%= s.association :starts_on_week, :label_method => :title %>
+      <%= s.association :breaks_on_week, :label_method => :title %>
+      <%= s.association :ends_on_week, :label_method => :title %>
+    </fieldset>
+  <% end %>
+
   <div class="buttons">
     <%= f.submit %>
     <%= link_to t('cancel'), :back %>

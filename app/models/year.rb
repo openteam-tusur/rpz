@@ -8,8 +8,8 @@ class Year < ActiveRecord::Base
   has_many :semesters, :order => 'semesters.title ASC'
   has_many :weeks
 
-  has_one :autumn_semester, :foreign_key => :year_id, :class_name => Semester, :conditions => { :title => :autumn }
-  has_one :spring_semester, :foreign_key => :year_id, :class_name => Semester, :conditions => { :title => :spring }
+  has_one :autumn_semester, :class_name => Semester, :conditions => { :title => :autumn }
+  has_one :spring_semester, :class_name => Semester, :conditions => { :title => :spring }
 
   accepts_nested_attributes_for :autumn_semester, :spring_semester
 
