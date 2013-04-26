@@ -4,8 +4,10 @@ class GroupSemester < ActiveRecord::Base
   belongs_to :breaks_on_week, :class_name => "Week"
   belongs_to :ends_on_week, :class_name => "Week"
   belongs_to :semester
+
   has_many :educations, dependent: :destroy
   has_many :trainings, through: :educations
+
   scope :autumn, -> { joins(:semester).where('semesters.title' => :autumn) }
   scope :spring, -> { joins(:semester).where('semesters.title' => :spring) }
 
