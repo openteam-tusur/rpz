@@ -5,14 +5,18 @@ class Permission < ActiveRecord::Base
   belongs_to :context, polymorphic: true
   belongs_to :user
 
-  validates_presence_of :context_id
+  validates_presence_of :context_id, unless: :role_manager?
   validates_uniqueness_of :user_id, scope: [:context_id]
 
   before_create :set_context_type
 
-  enumerize :role, in: [:manager, :operator]
+  enumerize :role, in: [:manager, :operator], predicates: { prefix: true }
 
   sso_auth_permission roles: [:manager, :operator]
+
+  def to_s
+    context.title if context
+  end
 
   private
 

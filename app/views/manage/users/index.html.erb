@@ -31,7 +31,7 @@
               <ul>
                 <% permissions.each do |permission| %>
                   <li>
-                    <%= permission.context.title %>
+                    <%= permission %>
                     <%= link_to 'Удалить', manage_user_permission_path(permission.user, permission), :method => :delete, :confirm => t('confirm') if can?(:destroy, permission) %>
                   </li>
                 <% end %>
