@@ -1,7 +1,7 @@
 class FacultiesController < ApplicationController
- inherit_resources
+  sso_load_and_authorize_resource
 
- belongs_to :year
+  belongs_to :year
 
- actions :show
+  actions :show
 end

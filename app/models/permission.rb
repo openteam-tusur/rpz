@@ -8,7 +8,7 @@ class Permission < ActiveRecord::Base
   validates_presence_of :context_id, unless: :role_manager?
   validates_uniqueness_of :user_id, scope: [:context_id]
 
-  before_create :set_context_type
+  before_create :set_context_type, if: :context_id?
 
   enumerize :role, in: [:manager, :operator], predicates: { prefix: true }
 

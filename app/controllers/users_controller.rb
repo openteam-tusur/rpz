@@ -1,4 +1,6 @@
-class Manage::UsersController < Manage::ApplicationController
+class UsersController < ApplicationController
+  sso_load_and_authorize_resource
+
   actions :index
 
   has_scope :page, :default => 1
@@ -10,5 +12,4 @@ class Manage::UsersController < Manage::ApplicationController
       paginate(page: params[:page], per_page: 10)
     }.results
   end
-
 end

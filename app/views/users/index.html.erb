@@ -1,6 +1,6 @@
 <%= content_for :title, 'Управление пользователями' %>
 
-<%= form_tag manage_users_path, method: :get do %>
+<%= form_tag users_path, method: :get do %>
   <div class='search'>
     <%= text_field_tag :q,
       params[:q],
@@ -20,7 +20,7 @@
         <span class="name"><%= user.name %></span>
         <span class="email"><%= mail_to user.email, user.email %></span>
         <%= link_to 'Подробнее', '#', :class => 'show' if user.permissions.any? %>
-        <%= link_to 'Добавить', new_manage_user_permission_path(user), :class => 'add' %>
+        <%= link_to 'Добавить', new_user_permission_path(user), :class => 'add' %>
       </div>
 
       <div class="details">
@@ -32,7 +32,7 @@
                 <% permissions.each do |permission| %>
                   <li>
                     <%= permission %>
-                    <%= link_to 'Удалить', manage_user_permission_path(permission.user, permission), :method => :delete, :confirm => t('confirm') if can?(:destroy, permission) %>
+                    <%= link_to 'Удалить', user_permission_path(permission.user, permission), :method => :delete, :confirm => t('confirm') if can?(:destroy, permission) %>
                   </li>
                 <% end %>
               </ul>

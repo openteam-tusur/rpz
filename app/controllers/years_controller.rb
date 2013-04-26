@@ -1,7 +1,7 @@
 # encoding: utf-8
 
 class YearsController < ApplicationController
-  inherit_resources
+  sso_load_and_authorize_resource
 
   has_scope :sorted_by_title, :default => 1 do |controller, scope|
     scope.order(:title)
