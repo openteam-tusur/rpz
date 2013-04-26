@@ -1,7 +1,11 @@
-<% if params[:archived] %>
-  <%= content_for :title, "Архивные группы #{@faculty.abbr}" %>
-<% else %>
+<% if params[:by_course] %>
   <%= content_for :title, "Группы #{params[:by_course].match(/\d+/)[0]} курса #{@faculty.abbr}" %>
+<% else %>
+  <%= content_for :title, "Архивные группы #{@faculty.abbr}" %>
 <% end %>
 
-<%= render collection %>
+<% if collection.any? %>
+  <%= render collection %>
+<% else %>
+  <div class="empty">Нет ни одной группы</div>
+<% end %>

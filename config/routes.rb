@@ -8,9 +8,9 @@ Rpz::Application.routes.draw do
 
   resources :years do
     resources :faculties, :only => [:show] do
-      get '/groups/:by_course' => 'groups#index', :constraints => { :by_course => /course_\d+/ }, :as => :scoped_groups
       resources :groups, :only => [:show, :new, :create, :edit, :update] do
-        get '/:archived' => 'groups#index', :constraints => { :archived => /archived/ }, :on => :collection
+        get '/:by_course' => 'groups#index', :constraints => { :by_course => /course_\d+/ }, :as => :scoped, :on => :collection
+        get '/:archived' => 'groups#index', :constraints => { :archived => /archived/ }, :as => :archived, :on => :collection, :defaults => { :archived => 'archived' }
         get '/change_archived_state' => 'groups#change_archived_state', :as => :change_archived_state, :on => :member
       end
     end

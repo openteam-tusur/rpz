@@ -1,10 +1,11 @@
 <%= content_for :title, "#{resource.title}" %>
 
+<%= link_to t('archived_groups'), archived_year_faculty_groups_path(@year, @faculty) %>
 <%= link_to t('new_group'), new_year_faculty_group_path(@year, @faculty), :class => 'new_link' %>
 
 <% resource.groups.group_by(&:course).each do |course, groups| %>
   <div class='item block'>
-    <%= link_to "#{course} курс", year_faculty_scoped_groups_path(@year, @faculty, :by_course => "course_#{course}"), :class => 'title' %>
+    <%= link_to "#{course} курс", scoped_year_faculty_groups_path(@year, @faculty, :by_course => "course_#{course}"), :class => 'title' %>
     <%= t :groups, :count => groups.count %>
   </div>
 <% end %>

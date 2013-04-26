@@ -18,6 +18,7 @@
     <div class="main_wrapper">
       <h1><%= yield :title %></h1>
       <div class="main">
+        <div class="breadcrumbs"><%= render_navigation :renderer => :breadcrumbs, :join_with => '<span>&rarr;</span>' %></div>
         <%= yield %>
       </div>
     </div>

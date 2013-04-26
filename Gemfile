@@ -23,6 +23,7 @@ group :default do
   gem 'rails'
   gem 'russian'
   gem 'simple_form'
+  gem 'simple-navigation'
   gem 'sso-auth'
   gem 'sunspot_rails'
 end
