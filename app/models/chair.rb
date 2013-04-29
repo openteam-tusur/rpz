@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 class Chair < ActiveRecord::Base
   before_save :set_slug
 

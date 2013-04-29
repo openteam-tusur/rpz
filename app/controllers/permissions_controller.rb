@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 class PermissionsController < ApplicationController
   sso_load_and_authorize_resource
 

@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 class GroupSemester < ActiveRecord::Base
   attr_accessible :semester_id, :starts_on_week_id, :breaks_on_week_id, :ends_on_week_id
 

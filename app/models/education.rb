@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 class Education < ActiveRecord::Base
   belongs_to :semester, class_name: 'GroupSemester', foreign_key: :group_semester_id
   belongs_to :discipline

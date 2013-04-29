@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 class GroupsController < ApplicationController
   sso_load_and_authorize_resource
 

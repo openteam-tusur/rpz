@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 class Permission < ActiveRecord::Base
   extend Enumerize
   attr_accessible :context_id, :role
