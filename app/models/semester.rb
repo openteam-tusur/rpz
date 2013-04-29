@@ -13,8 +13,9 @@ class Semester < ActiveRecord::Base
   has_one :ends_on_week, class_name: 'Week', conditions: proc { { starts_on: self.ends_on } }
 
   validates_presence_of :breaks_on, :ends_on, :starts_on
+  validate :check_for_monday
 
-  enumerize :title, :in => [:spring, :autumn]
+  enumerize :title, :in => [:spring, :autumn], :predicates => true
 
   def to_s
     ''.tap do |s|
@@ -24,4 +25,10 @@ class Semester < ActiveRecord::Base
     end
   end
 
+private
+  def check_for_monday
+    errors.add :starts_on, 'не является понедельником' if self.starts_on.cwday != 1 && self.spring?
+    errors.add :breaks_on, 'не является понедельником' if self.breaks_on.cwday != 1
+    errors.add :ends_on,   'не является понедельником' if self.ends_on.cwday != 1
+  end
 end
