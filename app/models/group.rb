@@ -1,6 +1,8 @@
 # encoding: utf-8
 
 class Group < ActiveRecord::Base
+  extend FriendlyId
+
   attr_accessible :budget_students_count, :course, :number, :payment_students_count, :semesters_attributes, :year_forming
 
   belongs_to :chair
@@ -26,6 +28,8 @@ class Group < ActiveRecord::Base
   scope :with_subspeciality,    -> { where 'subspeciality_id IS NOT NULL' }
   scope :without_subspeciality, -> { where subspeciality_id:  nil }
   scope :without_educations,    -> { includes(:educations).where('educations.id IS NULL') }
+
+  friendly_id :number
 
   def to_s
     "гр. #{number}"
