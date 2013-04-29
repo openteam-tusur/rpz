@@ -6,7 +6,7 @@
             :class => @group.verified? ? 'checked check_link' : 'unchecked check_link' %>
 
 <div><%= Group.human_attribute_name(:number) %>: <%= resource %></div>
-<div><%= Group.human_attribute_name(:course) %>: <%= "#{resource.course} курс" %></div>
+<div><%= Group.human_attribute_name(:course) %>: <%= "#{resource.course.number} курс" %></div>
 <div><%= Group.human_attribute_name(:year_forming) %>: <%= resource.year_forming %></div>
 <div><%= Group.human_attribute_name(:budget_students_count) %>: <%= resource.budget_students_count %></div>
 <div><%= Group.human_attribute_name(:payment_students_count) %>: <%= resource.payment_students_count %></div>

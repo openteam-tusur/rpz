@@ -7,10 +7,10 @@ class Group < ActiveRecord::Base
   belongs_to :course
   belongs_to :year
 
-  has_many :year_semesters, source: :semesters, class_name: 'Semester', through: :year
-
-  has_many :semesters, class_name: 'GroupSemester', dependent: :destroy, order: 'id ASC'
+  has_one :faculty, :through => :course
   has_many :educations, through: :semesters
+  has_many :semesters, class_name: 'GroupSemester', dependent: :destroy, order: 'id ASC'
+  has_many :year_semesters, source: :semesters, class_name: 'Semester', through: :year
 
   accepts_nested_attributes_for :semesters
 
@@ -19,7 +19,7 @@ class Group < ActiveRecord::Base
   after_save :create_semesters
 
   scope :archived,              ->(archived) { where archived: true }
-  scope :by_course,             ->(course) { not_archived.where course: course.match(/\d+/)[0] }
+  scope :by_course,             ->(course) { not_archived.joins(:course).where :courses => { :number => course.match(/\d+/)[0]} }
   scope :not_archived,          -> { where archived: false }
   scope :verified,              -> { where verified: false }
   scope :with_subspeciality,    -> { where 'subspeciality_id IS NOT NULL' }

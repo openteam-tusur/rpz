@@ -14,8 +14,8 @@ SimpleNavigation::Configuration.run do |navigation|
           faculty.item :archived_groups, 'Архивированные группы', archived_year_faculty_groups_path(@year, @faculty, :archived => 'archived')
           faculty.item :new_group, 'Создание новой группы', new_year_faculty_group_path(@year, @faculty)
           faculty.item :groups,
-                       "Группы #{params[:by_course] ? params[:by_course].match(/\d+/) : @group.course} курса",
-                       scoped_year_faculty_groups_path(@year, @faculty, :by_course => "course_#{params[:by_course] ? params[:by_course].match(/\d+/) : @group.course}") do |faculty|
+                       "Группы #{params[:by_course] ? params[:by_course].match(/\d+/) : @group.course.number} курса",
+                       scoped_year_faculty_groups_path(@year, @faculty, :by_course => "course_#{params[:by_course] ? params[:by_course].match(/\d+/) : @group.course.number}") do |faculty|
 
             faculty.item :group, @group, year_faculty_group_path(@year, @faculty, @group) do |group|
 
