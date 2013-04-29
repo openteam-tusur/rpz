@@ -2,7 +2,6 @@ ru:
   are_you_sure:        Вы уверены?
   archive:             Архивировать
   archived_groups:     Архивированные группы
-  change:              Изменить
   unarchive:           Вернуть
   cancel:              Отмена
   confirm:             Вы уверены?
@@ -12,8 +11,8 @@ ru:
   new_year:            Добавить новый учебный год
   remove:              Удалить
   save:                Сохранить
-  verified:            Сроки и контингент выверены
-  unverified:          Сроки и контингент невыверены
+  verified:            Сроки семестров и контингент выверены
+  unverified:          Сроки семестров и контингент невыверены
 
   groups:
     few: "%{count} группы"

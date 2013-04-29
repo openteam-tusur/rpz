@@ -1,5 +1,11 @@
 <%= content_for :title, "Группа #{@group.number} #{@faculty.abbr}" %>
 
+<% if @group.verified? %>
+  <%= link_to 'Сроки семестров и контингент', change_verified_state_year_faculty_group_path(@year, @faculty, @group), :title => t('verified'), :class => 'checked check_link' %>
+<% else %>
+  <%= link_to 'Сроки семестров и контингент', change_verified_state_year_faculty_group_path(@year, @faculty, @group), :title => t('unverified'), :class => 'unchecked check_link' %>
+<% end %>
+
 <div><%= Group.human_attribute_name(:number) %>: <%= resource %></div>
 <div><%= Group.human_attribute_name(:course) %>: <%= "#{resource.course} курс" %></div>
 <div><%= Group.human_attribute_name(:year_forming) %>: <%= resource.year_forming %></div>
@@ -12,13 +18,6 @@
 <%= link_to t('edit'), edit_resource_path %>
 <%= link_to t('remove'), resource_path, :method => :delete, :confirm => t('are_you_sure') %>
 
-<% if @group.verified? %>
-  <%= t('verified') %>
-  <%= link_to t('change'), change_verified_state_year_faculty_group_path(@year, @faculty, @group) %>
-<% else %>
-  <%= t('unverified') %>
-  <%= link_to t('change'), change_verified_state_year_faculty_group_path(@year, @faculty, @group) %>
-<% end %>
 
 <div class="rpz_info">
   <% @group.semesters.each do |semester| %>

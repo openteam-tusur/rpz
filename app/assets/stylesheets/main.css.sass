@@ -205,3 +205,32 @@ form
 
     .total
       width: 50px !important
+
+.check_link
+  float: right
+  padding: 0 0 0 20px
+
+  &.checked
+    background: image_url('checked.png') no-repeat left center
+
+    &:after
+      content: ' выверены'
+
+    &:hover
+      background: image_url('unchecked.png') no-repeat left center
+
+      &:after
+        content: ' не выверены'
+
+  &.unchecked
+    background: image_url('unchecked.png') no-repeat left center
+
+    &:after
+      content: ' не выверены'
+
+    &:hover
+      background: image_url('checked.png') no-repeat left center
+
+      &:after
+        content: ' выверены'
+
