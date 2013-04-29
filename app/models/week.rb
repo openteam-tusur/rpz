@@ -1,4 +1,4 @@
-# encodong: utf-8
+# encoding: utf-8
 
 class Week < ActiveRecord::Base
   attr_accessible :number, :semester_id, :starts_on
