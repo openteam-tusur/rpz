@@ -8,5 +8,6 @@
     <%= link_to "#{course} курс", scoped_year_faculty_groups_path(@year, @faculty, :by_course => "course_#{course}"), :class => 'title' %>
     <span><%= t :groups, :count => groups.count %></span>
     <span><%= t :groups, :count => resource.groups.by_course(course.to_s).verified.count %> не выверены сроки и контингент</span>
+    <span><%= t :groups, :count => resource.groups.by_course(course.to_s).without_subspeciality.count %> нет РУП</span>
   </div>
 <% end %>

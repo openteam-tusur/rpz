@@ -10,5 +10,6 @@
     <%= link_to faculty, year_faculty_path(@year, faculty), :title => faculty.title, :class => 'title' %>
     <span><%= t :groups, :count => faculty.groups.count %></span>
     <span><%= t :groups, :count => faculty.groups.verified.count %> не выверены сроки и контингент</span>
+    <span><%= t :groups, :count => faculty.groups.without_subspeciality.count %> нет РУП</span>
   </div>
 <% end %>
