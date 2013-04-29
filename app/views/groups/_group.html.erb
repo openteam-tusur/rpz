@@ -6,4 +6,8 @@
   <% else %>
     <%= link_to t('archive'), change_archived_state_year_faculty_course_group_path(@year, @faculty, @course, group), :confirm => t('are_you_sure') %>
   <% end %>
+
+  <span>Сроки семестров и контингент <%= group.verified? ? 'выверены' : 'не выверены' %></span>
+  <span><%= group.subspeciality_id.nil? ? 'нет РП' : 'есть РП' %></span>
+  <span><%= group.educations.empty? ? 'нет РУП' : 'есть РУП' %></span>
 </div>

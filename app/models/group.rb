@@ -24,7 +24,7 @@ class Group < ActiveRecord::Base
   scope :verified,              -> { where(verified: false).order(:number) }
   scope :with_subspeciality,    -> { where 'subspeciality_id IS NOT NULL' }
   scope :without_subspeciality, -> { where subspeciality_id:  nil }
-  scope :without_educations,    -> { where id: with_subspeciality.select { |g| g.id if g.educations.empty? } }
+  scope :without_educations,    -> { includes(:educations).where('educations.id IS NULL') }
 
   def to_s
     "гр. #{number}"
