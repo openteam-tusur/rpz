@@ -1,0 +1,19 @@
+<%= content_for :title, 'Список потоков' %>
+
+<ul>
+  <% @faculty.educations.group_by(&:discipline).each do |discipline, educations| %>
+    <% if true || educations.many? %>
+      <li>
+        <%= discipline.title %>
+        <ul>
+          <% educations.each do |education| %>
+            <li>
+              <%= education.group.number %>
+              Семестр <%= education.semester.semester.id %>
+            </li>
+          <% end %>
+        </ul>
+      </li>
+    <% end %>
+  <% end %>
+</ul>

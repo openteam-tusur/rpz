@@ -3,7 +3,9 @@
 class Faculty < ActiveRecord::Base
   attr_accessible :abbr, :title
 
-  has_many :groups, :dependent => :destroy, :order => 'groups.course ASC, groups.number ASC'
+  has_many :groups, dependent: :destroy, order: 'groups.course ASC, groups.number ASC'
+  has_many :group_semesters, source: :semesters, through: :groups
+  has_many :educations, through: :group_semesters
 
   before_save :set_slug
 

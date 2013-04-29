@@ -7,6 +7,8 @@ Rpz::Application.routes.draw do
         get '/change_archived_state' => 'groups#change_archived_state', :as => :change_archived_state, :on => :member
         get '/change_verified_state' => 'groups#change_verified_state', :as => :change_verified_state, :on => :member
       end
+
+      resources :streams, only: :index
     end
   end
 
