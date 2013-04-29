@@ -8,6 +8,5 @@
   <% end %>
 
   <span>Сроки семестров и контингент <%= group.verified? ? 'выверены' : 'не выверены' %></span>
-  <span><%= group.subspeciality_id.nil? ? 'нет РП' : 'есть РП' %></span>
   <span><%= group.educations.empty? ? 'нет РУП' : 'есть РУП' %></span>
 </div>

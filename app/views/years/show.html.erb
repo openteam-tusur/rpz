@@ -8,9 +8,8 @@
 <% resource.faculties.each do |faculty| %>
   <div class='item block <%= faculty.slug %>'>
     <%= link_to faculty, year_faculty_path(@year, faculty), :title => faculty.title, :class => 'title' %>
-    <span><%= t :groups, :count => faculty.groups.count %></span>
-    <span><%= t :groups, :count => faculty.groups.verified.count %> не выверены сроки семестров и контингент</span>
-    <span><%= t :groups, :count => faculty.groups.without_subspeciality.count %> нет РП</span>
-    <span><%= t :groups, :count => faculty.groups.without_educations.count %> нет РУП</span>
+    <span><%= t :groups, :count => faculty.groups.not_archived.count %></span>
+    <span><%= t :groups, :count => faculty.groups.not_archived.not_verified.count %> не выверены сроки семестров и контингент</span>
+    <span><%= t :groups, :count => faculty.groups.not_archived.without_educations.count %> нет РУП</span>
   </div>
 <% end %>
