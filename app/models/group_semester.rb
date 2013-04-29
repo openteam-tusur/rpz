@@ -7,11 +7,13 @@ class GroupSemester < ActiveRecord::Base
   belongs_to :ends_on_week, :class_name => "Week"
   belongs_to :semester
 
-  has_many :educations, dependent: :destroy
+  has_many :educations, dependent: :destroy, :order => 'cycle_code ASC'
   has_many :trainings, through: :educations
 
   scope :autumn, -> { joins(:semester).where('semesters.title' => :autumn) }
   scope :spring, -> { joins(:semester).where('semesters.title' => :spring) }
+
+  delegate :title_text, :to => :semester
 
   def number
     semester_number = group.course*2 -1
@@ -24,7 +26,7 @@ class GroupSemester < ActiveRecord::Base
   end
 
   def weeks
-    semester.year.weeks.where(:number => [starts_on_week.number..ends_on_week.number])
+    semester.year.weeks.where(:number => [starts_on_week.number..ends_on_week.number]).order('number ASC')
   end
 
   def css_class_for(week)
