@@ -16,8 +16,6 @@ class Group < ActiveRecord::Base
 
   validates_presence_of :course, :year, :number, :year_forming
 
-  before_save :set_course
-
   after_save :create_semesters
 
   scope :archived,              ->(archived) { where archived: true }
@@ -43,10 +41,6 @@ class Group < ActiveRecord::Base
   end
 
   private
-
-  def set_course
-    self.course = self.year.year - year_forming + 1
-  end
 
   def create_semesters
     year.semesters.each do |year_semester|

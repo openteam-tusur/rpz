@@ -13,7 +13,8 @@ class GroupImporter < BaseImporter
       bar.increment! if index%10 == 0
       next if (year.year - group_attributes['year_forming'].to_i) > 5
       faculty = faculty(group_attributes['education']['faculty'])
-      group = faculty.groups.find_or_initialize_by_number_and_year_id(group_attributes['group_name'], year.id)
+      course = course(faculty, group_attributes['year_forming'])
+      group = course.groups.find_or_initialize_by_number_and_year_id(group_attributes['group_name'], year.id)
       group.year_forming = group_attributes['year_forming']
       group.save!
       build_group_for_first_course(group) if group.course == 2
@@ -32,6 +33,10 @@ class GroupImporter < BaseImporter
     faculty.title = params['faculty_name']
     faculty.save!
     faculty
+  end
+
+  def self.course(faculty, year_forming)
+    faculty.courses.find_or_create_by_number(year.year - year_forming.to_i + 1)
   end
 
   def self.build_group_for_first_course(group)
