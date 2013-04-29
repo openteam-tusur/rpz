@@ -1,6 +1,7 @@
 # encoding: utf-8
 
 class Chair < ActiveRecord::Base
+  belongs_to :year
   before_save :set_slug
 
   private

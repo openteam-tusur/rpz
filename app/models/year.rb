@@ -3,8 +3,9 @@
 class Year < ActiveRecord::Base
   attr_accessible :title, :autumn_semester_attributes, :spring_semester_attributes
 
-  has_many :faculties, :through => :groups, :uniq => true, :order => 'faculties.abbr ASC'
-  has_many :groups
+  has_many :faculties, order: 'abbr ASC'
+  has_many :groups, through: :faculties
+  has_many :chairs, order: 'abbr ASC'
   has_many :semesters, :order => 'semesters.title ASC'
   has_many :weeks
 

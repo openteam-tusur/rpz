@@ -6,16 +6,16 @@ class Group < ActiveRecord::Base
   belongs_to :chair
   belongs_to :course
   has_one :faculty, through: :course
-  belongs_to :year
 
   has_one :faculty, :through => :course
+  has_one :year, through: :faculty
   has_many :educations, through: :semesters
   has_many :semesters, class_name: 'GroupSemester', dependent: :destroy, order: 'id ASC'
   has_many :year_semesters, source: :semesters, class_name: 'Semester', through: :year
 
   accepts_nested_attributes_for :semesters
 
-  validates_presence_of :course, :year, :number, :year_forming
+  validates_presence_of :course, :number, :year_forming
 
   after_save :create_semesters
 

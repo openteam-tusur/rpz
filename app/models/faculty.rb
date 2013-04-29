@@ -7,6 +7,7 @@ class Faculty < ActiveRecord::Base
   has_many :groups, through: :courses
   has_many :group_semesters, source: :semesters, through: :groups
   has_many :educations, through: :group_semesters
+  belongs_to :year
 
   before_save :set_slug
 

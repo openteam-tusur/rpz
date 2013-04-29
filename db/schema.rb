@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130429053958) do
+ActiveRecord::Schema.define(:version => 20130429094236) do
 
   create_table "chairs", :force => true do |t|
     t.text     "title"
@@ -19,7 +19,10 @@ ActiveRecord::Schema.define(:version => 20130429053958) do
     t.string   "slug"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.integer  "year_id"
   end
+
+  add_index "chairs", ["year_id"], :name => "index_chairs_on_year_id"
 
   create_table "checks", :force => true do |t|
     t.integer  "education_id"
@@ -66,7 +69,10 @@ ActiveRecord::Schema.define(:version => 20130429053958) do
     t.string   "slug"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.integer  "year_id"
   end
+
+  add_index "faculties", ["year_id"], :name => "index_faculties_on_year_id"
 
   create_table "group_semesters", :force => true do |t|
     t.integer  "group_id"
@@ -85,7 +91,6 @@ ActiveRecord::Schema.define(:version => 20130429053958) do
   add_index "group_semesters", ["starts_on_week_id"], :name => "index_group_semesters_on_starts_on_week_id"
 
   create_table "groups", :force => true do |t|
-    t.integer  "year_id"
     t.string   "number"
     t.integer  "year_forming"
     t.integer  "course"

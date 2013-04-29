@@ -8,7 +8,7 @@ class BaseImporter
   end
 
   def self.chair(params)
-    chair = Chair.find_or_initialize_by_abbr(params['abbr'])
+    chair = year.chairs.find_or_initialize_by_abbr(params['abbr'])
     chair.title = params['title']
     chair.save!
     chair
