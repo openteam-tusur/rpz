@@ -4,7 +4,7 @@ class Group < ActiveRecord::Base
   attr_accessible :budget_students_count, :course, :number, :payment_students_count, :semesters_attributes, :year_forming
 
   belongs_to :chair
-  belongs_to :faculty
+  belongs_to :course
   belongs_to :year
 
   has_many :year_semesters, source: :semesters, class_name: 'Semester', through: :year
@@ -14,7 +14,7 @@ class Group < ActiveRecord::Base
 
   accepts_nested_attributes_for :semesters
 
-  validates_presence_of :faculty, :year, :number, :year_forming
+  validates_presence_of :course, :year, :number, :year_forming
 
   before_save :set_course
 
@@ -42,7 +42,8 @@ class Group < ActiveRecord::Base
     self.save
   end
 
-private
+  private
+
   def set_course
     self.course = self.year.year - year_forming + 1
   end

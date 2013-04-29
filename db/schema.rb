@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130426051315) do
+ActiveRecord::Schema.define(:version => 20130429053958) do
 
   create_table "chairs", :force => true do |t|
     t.text     "title"
@@ -30,6 +30,15 @@ ActiveRecord::Schema.define(:version => 20130426051315) do
   end
 
   add_index "checks", ["education_id"], :name => "index_checks_on_education_id"
+
+  create_table "courses", :force => true do |t|
+    t.integer  "faculty_id"
+    t.integer  "number"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "courses", ["faculty_id"], :name => "index_courses_on_faculty_id"
 
   create_table "disciplines", :force => true do |t|
     t.text     "title"
@@ -76,7 +85,6 @@ ActiveRecord::Schema.define(:version => 20130426051315) do
   add_index "group_semesters", ["starts_on_week_id"], :name => "index_group_semesters_on_starts_on_week_id"
 
   create_table "groups", :force => true do |t|
-    t.integer  "faculty_id"
     t.integer  "year_id"
     t.string   "number"
     t.integer  "year_forming"
@@ -93,9 +101,10 @@ ActiveRecord::Schema.define(:version => 20130426051315) do
     t.integer  "plan_year"
     t.boolean  "archived",               :default => false
     t.boolean  "verified",               :default => false
+    t.integer  "course_id"
   end
 
-  add_index "groups", ["faculty_id"], :name => "index_groups_on_faculty_id"
+  add_index "groups", ["course_id"], :name => "index_groups_on_course_id"
 
   create_table "permissions", :force => true do |t|
     t.integer  "user_id"
