@@ -1,10 +1,9 @@
 <%= content_for :title, "Группа #{@group.number} #{@faculty.abbr}" %>
 
-<% if @group.verified? %>
-  <%= link_to 'Сроки семестров и контингент', change_verified_state_year_faculty_group_path(@year, @faculty, @group), :title => t('verified'), :class => 'checked check_link' %>
-<% else %>
-  <%= link_to 'Сроки семестров и контингент', change_verified_state_year_faculty_group_path(@year, @faculty, @group), :title => t('unverified'), :class => 'unchecked check_link' %>
-<% end %>
+<%= link_to 'Сроки семестров и контингент',
+            change_verified_state_year_faculty_group_path(@year, @faculty, @group),
+            :title => @group.verified? ? t('verified') : t('unverified'),
+            :class => @group.verified? ? 'checked check_link' : 'unchecked check_link' %>
 
 <div><%= Group.human_attribute_name(:number) %>: <%= resource %></div>
 <div><%= Group.human_attribute_name(:course) %>: <%= "#{resource.course} курс" %></div>
