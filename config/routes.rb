@@ -14,5 +14,5 @@ Rpz::Application.routes.draw do
     resources :permissions, :only => [:new, :create, :destroy]
   end
 
-  root :to => 'years#index'
+  root :to => 'welcome#index'
 end
