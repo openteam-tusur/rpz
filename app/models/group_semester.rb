@@ -18,7 +18,7 @@ class GroupSemester < ActiveRecord::Base
   delegate :title_text, :to => :semester
 
   def number
-    semester_number = group.course*2 -1
+    semester_number = group.course.number*2 -1
     semester_number += 1 if semester.title.spring?
     semester_number
   end

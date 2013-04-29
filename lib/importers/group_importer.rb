@@ -17,7 +17,7 @@ class GroupImporter < BaseImporter
       group = course.groups.find_or_initialize_by_number_and_year_id(group_attributes['group_name'], year.id)
       group.year_forming = group_attributes['year_forming']
       group.save!
-      build_group_for_first_course(group) if group.course == 2
+      build_group_for_first_course(group) if group.course.number == 2
     end
     nil
   end
@@ -58,7 +58,7 @@ class GroupImporter < BaseImporter
         warn "не могу понять как сгенерировать 1-ый курс для группы #{group.number}"
         return
       end
-    new_group = group.faculty.groups.find_or_initialize_by_number_and_year_id(new_group_number, year.id)
+    new_group = course(group.faculty, year.year).groups.find_or_initialize_by_number_and_year_id(new_group_number, year.id)
     new_group.year_forming = year.year
     new_group.save!
   end
