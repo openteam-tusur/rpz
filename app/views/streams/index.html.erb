@@ -1,7 +1,7 @@
 <%= content_for :title, 'Список потоков' %>
 
 <ul>
-  <% @faculty.educations.group_by(&:discipline).each do |discipline, educations| %>
+  <% @course.educations.group_by(&:discipline).each do |discipline, educations| %>
     <% if true || educations.many? %>
       <li>
         <%= discipline.title %>

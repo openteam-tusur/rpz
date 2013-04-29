@@ -13,7 +13,8 @@ class Faculty < ActiveRecord::Base
 
   alias_attribute :to_s, :abbr
 
-private
+  private
+
   def set_slug
     self.slug = Russian.translit(self.abbr).downcase
   end

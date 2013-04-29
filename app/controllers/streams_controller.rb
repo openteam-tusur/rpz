@@ -1,5 +1,10 @@
 class StreamsController < ApplicationController
-  def index
-    @faculty = Faculty.find(params[:faculty_id])
+  inherit_resources
+
+  belongs_to :year
+  belongs_to :faculty
+  belongs_to :course
+
+  def collection
   end
 end
