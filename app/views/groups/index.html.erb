@@ -1,8 +1,12 @@
-<% if params[:by_course] %>
-  <%= content_for :title, "Группы #{params[:by_course].match(/\d+/)[0]} курса #{@faculty.abbr}" %>
-<% else %>
+<% if params[:archived] %>
   <%= content_for :title, "Архивные группы #{@faculty.abbr}" %>
+<% else %>
+  <%= content_for :title, "Группы #{@course.number} курса #{@faculty.abbr}" %>
 <% end %>
+
+<%#= link_to t('streams'), year_faculty_streams_path(@year, @faculty) %>
+<%= link_to t('archived_groups'), archived_year_faculty_course_groups_path(@year, @faculty, @course) %>
+<%= link_to t('new_group'), new_year_faculty_course_group_path(@year, @faculty, @course), :class => 'new_link' %>
 
 <% if collection.any? %>
   <%= render collection %>

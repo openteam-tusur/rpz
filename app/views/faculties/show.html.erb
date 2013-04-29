@@ -1,15 +1,11 @@
 <%= content_for :title, "#{resource.title}" %>
 
-<%= link_to t('streams'), year_faculty_streams_path(@year, @faculty) %>
-<%= link_to t('archived_groups'), archived_year_faculty_groups_path(@year, @faculty) %>
-<%= link_to t('new_group'), new_year_faculty_group_path(@year, @faculty), :class => 'new_link' %>
-
-<% resource.groups.group_by(&:course).each do |course, groups| %>
+<% resource.courses.each do |course| %>
   <div class='item block'>
-    <%= link_to "#{course.number} курс", scoped_year_faculty_groups_path(@year, @faculty, :by_course => "course_#{course.number}"), :class => 'title' %>
-    <span><%= t :groups, :count => groups.count %></span>
-    <span><%= t :groups, :count => resource.groups.by_course(course.to_s).verified.count %> не выверены сроки и контингент</span>
-    <span><%= t :groups, :count => resource.groups.by_course(course.to_s).without_subspeciality.count %> нет РУП</span>
-    <span><%= t :groups, :count => resource.groups.by_course(course.to_s).without_educations.count %> нет дисциплин </span>
+    <%= link_to "#{course.number} курс", year_faculty_course_groups_path(@year, @faculty, course), :class => 'title' %>
+    <span><%= t :groups, :count => course.groups.count %></span>
+    <span><%= t :groups, :count => course.groups.verified.count %> не выверены сроки и контингент</span>
+    <span><%= t :groups, :count => course.groups.without_subspeciality.count %> нет РУП</span>
+    <span><%= t :groups, :count => course.groups.without_educations.count %> нет дисциплин </span>
   </div>
 <% end %>

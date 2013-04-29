@@ -5,6 +5,7 @@ class Group < ActiveRecord::Base
 
   belongs_to :chair
   belongs_to :course
+  has_one :faculty, through: :course
   belongs_to :year
 
   has_one :faculty, :through => :course
@@ -18,10 +19,9 @@ class Group < ActiveRecord::Base
 
   after_save :create_semesters
 
-  scope :archived,              ->(archived) { where archived: true }
-  scope :by_course,             ->(course) { not_archived.joins(:course).where :courses => { :number => course.match(/\d+/)[0]} }
-  scope :not_archived,          -> { where archived: false }
-  scope :verified,              -> { where verified: false }
+  scope :archived,              ->(archived) { where(archived: true).order(:number) }
+  scope :not_archived,          -> { where(archived: false).order(:number) }
+  scope :verified,              -> { where(verified: false).order(:number) }
   scope :with_subspeciality,    -> { where 'subspeciality_id IS NOT NULL' }
   scope :without_subspeciality, -> { where subspeciality_id:  nil }
   scope :without_educations,    -> { where id: with_subspeciality.select { |g| g.id if g.educations.empty? } }

@@ -11,19 +11,25 @@ SimpleNavigation::Configuration.run do |navigation|
 
         year.item :faculties, @faculty.abbr, year_faculty_path(@year, @faculty) do |faculty|
 
-          faculty.item :archived_groups, 'Архивированные группы', archived_year_faculty_groups_path(@year, @faculty, :archived => 'archived')
-          faculty.item :new_group, 'Создание новой группы', new_year_faculty_group_path(@year, @faculty)
-          faculty.item :groups,
-                       "Группы #{params[:by_course] ? params[:by_course].match(/\d+/) : @group.course.number} курса",
-                       scoped_year_faculty_groups_path(@year, @faculty, :by_course => "course_#{params[:by_course] ? params[:by_course].match(/\d+/) : @group.course.number}") do |faculty|
+          faculty.item :courses,
+            "Группы #{@course.number} курса",
+            year_faculty_course_groups_path(@year, @faculty, @course) do |course|
 
-            faculty.item :group, @group, year_faculty_group_path(@year, @faculty, @group) do |group|
+              course.item :archived_groups,
+                'Архивированные группы',
+                archived_year_faculty_course_groups_path(@year, @faculty, @course, :archived => 'archived')
 
-              group.item :edit_group, 'Изменение группы', edit_year_faculty_group_path(@year, @faculty, @group)
+              course.item :new_group,
+                'Создание новой группы',
+                new_year_faculty_course_group_path(@year, @faculty, @course)
 
-            end if @group
+              course.item :group, @group, year_faculty_course_group_path(@year, @faculty, @course, @group) do |group|
 
-          end if params[:by_course] || @group && @group.persisted?
+                group.item :edit_group, 'Изменение группы', edit_year_faculty_course_group_path(@year, @faculty, @course, @group)
+
+              end if @group && @group.persisted?
+
+            end if @course
 
         end if @faculty
 

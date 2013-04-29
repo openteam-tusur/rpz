@@ -1,7 +1,7 @@
 <%= content_for :title, "Группа #{@group.number} #{@faculty.abbr}" %>
 
 <%= link_to 'Сроки семестров и контингент',
-            change_verified_state_year_faculty_group_path(@year, @faculty, @group),
+            change_verified_state_year_faculty_course_group_path(@year, @faculty, @course, @group),
             :title => @group.verified? ? t('verified') : t('unverified'),
             :class => @group.verified? ? 'checked check_link' : 'unchecked check_link' %>
 
@@ -15,8 +15,11 @@
 <div><%= Group.human_attribute_name(:subspeciality_title) %>: <%= resource.subspeciality_title %></div>
 
 <%= link_to t('edit'), edit_resource_path %>
-<%= link_to t('remove'), resource_path, :method => :delete, :confirm => t('are_you_sure') %>
-
+<% if @group.archived? %>
+  <%= link_to t('unarchive'), change_archived_state_year_faculty_course_group_path(@year, @faculty, @course, @group), :confirm => t('are_you_sure') %>
+<% else %>
+  <%= link_to t('archive'), change_archived_state_year_faculty_course_group_path(@year, @faculty, @course, @group), :confirm => t('are_you_sure') %>
+<% end %>
 
 <div class="rpz_info">
   <% @group.semesters.each do |semester| %>

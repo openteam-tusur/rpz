@@ -4,19 +4,20 @@ class GroupsController < ApplicationController
   sso_load_and_authorize_resource
 
   belongs_to :year do
-    belongs_to :faculty
+    belongs_to :faculty do
+      belongs_to :course
+    end
   end
 
   actions :index, :show, :new, :create, :edit, :update
   custom_actions :resource => [:change_archived_state, :change_verified_state]
 
-  has_scope :by_course
   has_scope :archived
 
   def change_archived_state
     change_archived_state!{
       @group.change_archived_state
-      redirect_to :action => :index, :by_course => "course_#{@group.course}" and return
+      redirect_to :action => :index and return
     }
   end
 
@@ -33,9 +34,15 @@ private
   def build_resource
     old_build_resource.tap do |o|
       o.year_id = Year.find(params[:year_id]).id
+      o.year_forming = @year.year - @course.number + 1
       o.year_semesters.each do |semester|
         s = o.semesters.build :semester_id => semester.id
       end if o.semesters.empty?
     end
+  end
+
+  def collection
+    return end_of_association_chain.not_archived unless params[:archived]
+    super
   end
 end
