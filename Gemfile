@@ -13,6 +13,7 @@ group :default do
   gem 'attribute_normalizer'
   gem 'enumerize'
   gem 'esp-views'
+  gem 'friendly_id'
   gem 'has_scope'
   gem 'inherited_resources'
   gem 'kaminari'
@@ -22,8 +23,8 @@ group :default do
   gem 'progress_bar',         :require => false
   gem 'rails'
   gem 'russian'
-  gem 'simple_form'
   gem 'simple-navigation'
+  gem 'simple_form'
   gem 'sso-auth'
   gem 'sunspot_rails'
 end

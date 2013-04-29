@@ -94,6 +94,7 @@ GEM
     faraday (0.8.7)
       multipart-post (~> 1.1)
     fattr (2.2.1)
+    friendly_id (4.0.9)
     fssm (0.2.10)
     has_scope (0.5.1)
     hashie (2.0.4)
@@ -276,6 +277,7 @@ DEPENDENCIES
   esp-views
   execjs
   fabrication
+  friendly_id
   has_scope
   hirb
   inherited_resources

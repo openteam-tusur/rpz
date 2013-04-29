@@ -1,6 +1,8 @@
 # encoding: utf-8
 
 class Faculty < ActiveRecord::Base
+  extend FriendlyId
+
   attr_accessible :abbr, :title
 
   has_many :courses, dependent: :destroy, order: :number
@@ -9,13 +11,7 @@ class Faculty < ActiveRecord::Base
   has_many :educations, through: :group_semesters
   belongs_to :year
 
-  before_save :set_slug
-
   alias_attribute :to_s, :abbr
 
-  private
-
-  def set_slug
-    self.slug = Russian.translit(self.abbr).downcase
-  end
+  friendly_id :abbr, use: :slugged
 end
