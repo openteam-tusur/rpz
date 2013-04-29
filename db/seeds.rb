@@ -4,7 +4,7 @@ User.find_or_initialize_by_email('mail@openteam.ru').tap do |user|
 end
 
 Year.find_or_initialize_by_title('2013 - 2014 учебный год').tap do |year|
-  year.autumn_semester_attributes = { starts_on: '2012-09-03', breaks_on: '2012-11-05', ends_on: '2012-12-31' }
-  year.spring_semester_attributes = { starts_on: '2013-02-11', breaks_on: '2013-04-08', ends_on: '2013-05-27' }
+  year.autumn_semester_attributes = { starts_on: '2013-09-02', breaks_on: '2013-10-21', ends_on: '2013-12-23' }
+  year.spring_semester_attributes = { starts_on: '2014-02-17', breaks_on: '2014-04-21', ends_on: '2014-06-14' }
   year.save!
 end
