@@ -15,7 +15,7 @@ class GroupSemester < ActiveRecord::Base
   scope :autumn, -> { joins(:semester).where('semesters.title' => :autumn) }
   scope :spring, -> { joins(:semester).where('semesters.title' => :spring) }
 
-  delegate :title_text, :to => :semester
+  delegate :title, :title_text, :to => :semester
 
   def number
     semester_number = group.course.number*2 -1

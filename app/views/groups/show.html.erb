@@ -22,9 +22,12 @@
 <% end %>
 
 <div class="rpz_info">
+  <ul class="tabs">
+    <li><a href='#autumn' class='active'>Осенний семестр</a></li>
+    <li><a href='#spring'>Весенний семестр</a></li>
+  </ul>
   <% @group.semesters.each do |semester| %>
-    <h3><%= semester.title_text %></h3>
-    <table>
+    <table id='<%= semester.title %>' class='tabs_target'>
       <thead>
         <tr>
           <th rowspan='2' class='cycle'>Цикл</th>
