@@ -4,6 +4,8 @@
   <%= content_for :title, "Группы #{@course.number} курса #{@faculty.abbr}" %>
 <% end %>
 
+<%= link_to t('autumn_streams'), year_faculty_course_semester_streams_path(@year, @faculty, @course, @year.autumn_semester) %>
+<%= link_to t('spring_streams'), year_faculty_course_semester_streams_path(@year, @faculty, @course, @year.spring_semester) %>
 <%= link_to t('archived_groups') + " (#{@course.groups.archived(:archived).count})",
   archived_year_faculty_course_groups_path(@year, @faculty, @course) %>
 <%= link_to t('new_group'), new_year_faculty_course_group_path(@year, @faculty, @course), :class => 'new_link' %>

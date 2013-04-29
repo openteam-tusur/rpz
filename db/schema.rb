@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130429094236) do
+ActiveRecord::Schema.define(:version => 20130429090318) do
 
   create_table "chairs", :force => true do |t|
     t.text     "title"
@@ -57,11 +57,13 @@ ActiveRecord::Schema.define(:version => 20130429094236) do
     t.text     "cycle_title"
     t.datetime "created_at",        :null => false
     t.datetime "updated_at",        :null => false
+    t.integer  "stream_id"
   end
 
   add_index "educations", ["chair_id"], :name => "index_educations_on_chair_id"
   add_index "educations", ["discipline_id"], :name => "index_educations_on_discipline_id"
   add_index "educations", ["group_semester_id"], :name => "index_educations_on_group_semester_id"
+  add_index "educations", ["stream_id"], :name => "index_educations_on_stream_id"
 
   create_table "faculties", :force => true do |t|
     t.string   "title"
@@ -131,6 +133,17 @@ ActiveRecord::Schema.define(:version => 20130429094236) do
   end
 
   add_index "semesters", ["year_id"], :name => "index_semesters_on_year_id"
+
+  create_table "streams", :force => true do |t|
+    t.integer  "course_id"
+    t.string   "title"
+    t.integer  "semester_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "streams", ["course_id"], :name => "index_streams_on_course_id"
+  add_index "streams", ["semester_id"], :name => "index_streams_on_semester_id"
 
   create_table "trainings", :force => true do |t|
     t.integer  "education_id"

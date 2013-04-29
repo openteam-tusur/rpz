@@ -6,6 +6,7 @@ class Education < ActiveRecord::Base
   belongs_to :chair
   belongs_to :discipline
   belongs_to :semester, class_name: 'GroupSemester', foreign_key: :group_semester_id
+  belongs_to :stream
 
   has_many :checks,    dependent: :destroy
   has_many :trainings, dependent: :destroy

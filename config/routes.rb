@@ -2,7 +2,9 @@ Rpz::Application.routes.draw do
   resources :years do
     resources :faculties, :only => [:show] do
       resources :courses, :only => [:show] do
-        resources :streams, only: :index
+        resources :semesters, only: [] do
+          resources :streams, only: :index
+        end
 
         resources :groups, except: [:destroy] do
           get '/:archived' => 'groups#index', :constraints => { :archived => /archived/ }, :as => :archived, :on => :collection, :defaults => { :archived => 'archived' }

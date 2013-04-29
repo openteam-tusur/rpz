@@ -6,6 +6,8 @@ class Semester < ActiveRecord::Base
   attr_accessible :breaks_on, :ends_on, :starts_on
 
   belongs_to :year
+
+  has_many :streams
   has_many :weeks
 
   has_one :starts_on_week, class_name: 'Week', conditions: proc { { starts_on: self.starts_on } }
