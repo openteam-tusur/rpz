@@ -9,5 +9,6 @@
     <span><%= t :groups, :count => groups.count %></span>
     <span><%= t :groups, :count => resource.groups.by_course(course.to_s).verified.count %> не выверены сроки и контингент</span>
     <span><%= t :groups, :count => resource.groups.by_course(course.to_s).without_subspeciality.count %> нет РУП</span>
+    <span><%= t :groups, :count => resource.groups.by_course(course.to_s).without_educations.count %> нет дисциплин </span>
   </div>
 <% end %>
