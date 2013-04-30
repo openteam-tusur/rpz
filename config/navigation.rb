@@ -27,7 +27,7 @@ SimpleNavigation::Configuration.run do |navigation|
 
                 group.item :edit_group, 'Изменение группы', edit_year_faculty_course_group_path(@year, @faculty, @course, @group)
                 group.item :edit_group_semester, "Редактирование нагрузки. #{@semester.title_text}",
-                      edit_year_faculty_course_group_semester_path(@year, @faculty, @course, @group, @semester)
+                      edit_year_faculty_course_group_semester_path(@year, @faculty, @course, @group, @semester) if @semester
 
               end if @group && @group.persisted?
 

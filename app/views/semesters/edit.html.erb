@@ -1,6 +1,6 @@
 <%= content_for :title, "Редактирование нагрузки для группы #{@group.number}. #{@semester.title_text}" %>
 
-<%= simple_form_for resource, url: year_faculty_course_group_semester_path([association_chain, resource].flatten) do |f| %>
+<%= simple_form_for resource, url: year_faculty_course_group_semester_path(@year, @faculty, @course, @group, @semester) do |f| %>
 
   <table>
     <thead>
@@ -35,8 +35,12 @@
             <tr>
               <td><%= training.title %></td>
               <td><%= training.planned_loading %></td>
-              <% @semester.weeks_count.times do  %>
-                <td>X</td>
+              <% @semester.weeks.each do |week| %>
+                <td>
+                  <%= f.fields_for "loading_values[#{training.loading_at(week).id}]", training.loading_at(week) do |loading_form| %>
+                    <%= loading_form.input :value  %>
+                  <% end %>
+                </td>
               <% end %>
             </tr>
           <% end %>
@@ -47,6 +51,6 @@
 
   <div class="buttons">
     <%= f.submit %>
-    <%= link_to t('cancel'), :back %>
+    <%= link_to t('cancel'), smart_resource_url %>
   </div>
 <% end %>

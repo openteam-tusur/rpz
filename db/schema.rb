@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130429094236) do
+ActiveRecord::Schema.define(:version => 20130430051846) do
 
   create_table "chairs", :force => true do |t|
     t.text     "title"
@@ -112,6 +112,17 @@ ActiveRecord::Schema.define(:version => 20130429094236) do
   end
 
   add_index "groups", ["course_id"], :name => "index_groups_on_course_id"
+
+  create_table "loadings", :force => true do |t|
+    t.integer  "week_id"
+    t.integer  "training_id"
+    t.integer  "value"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "loadings", ["training_id"], :name => "index_loadings_on_training_id"
+  add_index "loadings", ["week_id"], :name => "index_loadings_on_week_id"
 
   create_table "permissions", :force => true do |t|
     t.integer  "user_id"

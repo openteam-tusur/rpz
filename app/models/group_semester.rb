@@ -1,7 +1,8 @@
 # encoding: utf-8
 
 class GroupSemester < ActiveRecord::Base
-  attr_accessible :semester_id, :starts_on_week_id, :breaks_on_week_id, :ends_on_week_id
+  attr_accessible :semester_id, :starts_on_week_id, :breaks_on_week_id, :ends_on_week_id, :loading_values
+  attr_accessor :loading_values
 
   belongs_to :group
   belongs_to :starts_on_week, :class_name => "Week"
@@ -17,6 +18,8 @@ class GroupSemester < ActiveRecord::Base
   scope :by_semester_title, ->(title) { joins(:semester).where('semesters.title' => title) }
 
   delegate :title, :title_text, :to => :semester
+
+  after_save :save_loading_values
 
   def number
     semester_number = group.course.number*2 -1
@@ -38,5 +41,20 @@ class GroupSemester < ActiveRecord::Base
 
   def summ_planned_loading
     trainings.sum(&:planned_loading)
+  end
+
+  def summ_loading_value(weeks = weeks)
+    Loading.where(:training_id => trainings, :week_id => weeks).map(&:value).compact.sum
+  end
+
+  def summ_loading_value_at(week)
+    summ_loading_value(week)
+  end
+
+  private
+  def save_loading_values
+    loading_values.each do |loading_id, value|
+      Loading.find(loading_id).update_attribute(:value, value['value'])
+    end
   end
 end

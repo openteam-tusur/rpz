@@ -37,6 +37,7 @@
           <th rowspan='2' class='check'>Форма учета</th>
           <th rowspan='2' class='training'>Вид обучения</th>
           <th rowspan='2' class='total'>Всего часов</th>
+          <th rowspan='2' class='total'>Запланировано часов</th>
           <th colspan='<%= semester.weeks_count %>'>Распределение занятий</th>
         </tr>
         <tr>
@@ -61,14 +62,27 @@
               <tr>
                 <td><%= training.title %></td>
                 <td><%= training.planned_loading %></td>
-                <% semester.weeks_count.times do  %>
-                  <td>X</td>
+                <td><%= training.summ_loadings %></td>
+                <% semester.weeks.each do |week| %>
+                  <td><%= training.loading_at(week).value %></td>
                 <% end %>
               </tr>
             <% end %>
           <% end %>
         <% end %>
       </tbody>
+      <tr>
+        <tfoot>
+          <tr>
+            <td colspan='5'>Итого</td>
+            <td><%= semester.summ_planned_loading %></td>
+            <td><%= semester.summ_loading_value %></td>
+            <% semester.weeks.each do |week| %>
+              <td><%= semester.summ_loading_value_at(week) %></td>
+            <% end %>
+          </tr>
+        </tfoot>
+      </tr>
     </table>
   <% end %>
 </div>
