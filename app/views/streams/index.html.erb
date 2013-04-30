@@ -10,38 +10,38 @@
 </ul>
 
 <ul>
-  <% @semester.unstreamed_educations.group_by(&:discipline).each do |discipline, educations| %>
-    <% if educations.many? %>
-      <li>
-        <%= discipline.title %>
-        <%= form_tag year_faculty_course_streams_path(@year, @faculty, @course) do %>
-          <%= hidden_field_tag 'stream[title]', educations.first.discipline.title %>
-          <%= hidden_field_tag 'stream[semester_id]', @semester.id %>
-          <style type="text/css">
-            table, tr, td { border: 1px solid black };
-          </style>
-          <table>
-            <% educations.each_with_index do |education, index| %>
+  <% @course.unstreamed_educations(:autumn).group_by(&:discipline).each do |discipline, educations|  %>
+  <% if educations.many? %>
+    <li>
+      <%= discipline.title %>
+      <%= form_tag year_faculty_course_streams_path(@year, @faculty, @course) do %>
+        <%= hidden_field_tag 'stream[title]', educations.first.discipline.title %>
+        <%= hidden_field_tag 'stream[semester_id]', @semester.id %>
+        <style type="text/css">
+          table, tr, td { border: 1px solid black };
+        </style>
+        <table>
+          <% educations.each_with_index do |education, index| %>
+            <tr>
+              <td rowspan='<%= education.trainings.count + 1 %>'>
+                <%= check_box_tag "stream[education_ids][]", education.id, false, id: "stream_education_ids_#{education.id}_#{index}" %>
+                <%= label_tag "stream_education_ids_#{education.id}_#{index}", education.group.number %>
+              </td>
+              <td rowspan='<%= education.trainings.count + 1 %>'><%= discipline.title %></td>
+              <td rowspan='<%= education.trainings.count + 1 %>'><%= education.chair.abbr %>
+              <td rowspan='<%= education.trainings.count + 1 %>'><%= education.checks.map(&:title).join('<br/>').html_safe %></td>
+            </tr>
+            <% education.trainings.each do |training| %>
               <tr>
-                <td rowspan='<%= education.trainings.count + 1 %>'>
-                  <%= check_box_tag "stream[education_ids][]", education.id, false, id: "stream_education_ids_#{education.id}_#{index}" %>
-                  <%= label_tag "stream_education_ids_#{education.id}_#{index}", education.group.number %>
-                </td>
-                <td rowspan='<%= education.trainings.count + 1 %>'><%= discipline.title %></td>
-                <td rowspan='<%= education.trainings.count + 1 %>'><%= education.chair.abbr %>
-                <td rowspan='<%= education.trainings.count + 1 %>'><%= education.checks.map(&:title).join('<br/>').html_safe %></td>
+                <td><%= training.title %></td>
+                <td><%= training.planned_loading %></td>
               </tr>
-              <% education.trainings.each do |training| %>
-                <tr>
-                  <td><%= training.title %></td>
-                  <td><%= training.planned_loading %></td>
-                </tr>
             <% end %>
           <% end %>
-          </table>
-          <%= submit_tag 'Создать поток' %>
-        <% end %>
-      </li>
-    <% end %>
+        </table>
+        <%= submit_tag 'Создать поток' %>
+      <% end %>
+    </li>
   <% end %>
+<% end %>
 </ul>

@@ -13,5 +13,11 @@ class Course < ActiveRecord::Base
   has_many :educations, through: :group_semesters
   has_many :streams
 
+  scope :unstreamed_educations, ->(semester_title) { educations.joins(:semester => [:semester, :group]).where('semesters.title' => semester_title, 'groups.course_id' => 2) }
+
+  def unstreamed_educations(semester_title)
+    educations.joins(:semester => :semester).joins(:discipline).where('semesters.title' => semester_title).order('disciplines.title')
+  end
+
   friendly_id :number
 end
