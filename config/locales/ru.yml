@@ -52,10 +52,11 @@ ru:
         starts_on:   Начало недели
 
     models:
-      group:         группу
-      semester:      семестр
-      week:          учебная неделя
-      year:          учебный год
+      group:          группу
+      semester:       семестр
+      week:           учебная неделя
+      year:           учебный год
+      group_semester: нагрузку
 
   enumerize:
     permission:

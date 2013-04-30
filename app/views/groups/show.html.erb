@@ -27,6 +27,7 @@
     <li><a href='#spring'>Весенний семестр</a></li>
   </ul>
   <% @group.semesters.each do |semester| %>
+    <%= link_to "Редактировать нагрузку", edit_year_faculty_course_group_semester_path(@year, @faculty, @course, @group, semester) %>
     <table id='<%= semester.title %>' class='tabs_target'>
       <thead>
         <tr>
