@@ -8,8 +8,13 @@ class Stream < ActiveRecord::Base
   after_destroy :reset_education_stream_ids
 
   has_many :educations
+  has_many :trainings, through: :educations
 
   scope :by_semester_title, ->(title) { joins(:semester).where('semesters.title' => title) }
+
+  def lecture_trainings
+    trainings.where(kind: 'lecture')
+  end
 
   private
 
@@ -20,4 +25,5 @@ class Stream < ActiveRecord::Base
   def reset_education_stream_ids
     educations.update_all stream_id: nil
   end
+
 end

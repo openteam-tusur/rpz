@@ -54,7 +54,13 @@ class GroupSemester < ActiveRecord::Base
   private
   def save_loading_values
     loading_values.each do |loading_id, value|
-      Loading.find(loading_id).update_attribute(:value, value['value'])
+      loading = Loading.find(loading_id)
+      loading.update_attribute(:value, value['value'])
+      streamed_trainings = []
+      streamed_trainings = loading.education.stream.lecture_trainings if loading.education.stream && loading.training.kind == 'lecture'
+      streamed_trainings.each do |training|
+        training.loading_at(loading.week).update_attribute(:value, value['value'])
+      end
     end if loading_values
   end
 end
