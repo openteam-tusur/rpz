@@ -3,6 +3,8 @@ ru:
   archive:             Архивировать
   archived_groups:     Архивированные группы
   unarchive:           Вернуть
+  autumn_streams:      Управление потоками в осеннем семестре
+  spring_streams:      Управление потоками в весеннем семестре
   cancel:              Отмена
   confirm:             Вы уверены?
   create:              Создать

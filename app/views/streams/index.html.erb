@@ -4,7 +4,7 @@
   <% @streams.each do |stream| %>
     <li>
       <%= stream.title %>
-      <%= link_to t('delete'), year_faculty_course_stream_path(@year, @faculty, @course, stream), method: :delete %>
+      <%= link_to t('remove'), year_faculty_course_stream_path(@year, @faculty, @course, stream), method: :delete %>
     </li>
   <% end %>
 </ul>
