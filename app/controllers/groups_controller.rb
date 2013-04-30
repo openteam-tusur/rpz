@@ -33,9 +33,8 @@ private
 
   def build_resource
     old_build_resource.tap do |o|
-      o.year_id = Year.find(params[:year_id]).id
       o.year_forming = @year.year - @course.number + 1
-      o.year_semesters.each do |semester|
+      o.faculty.year.semesters.each do |semester|
         s = o.semesters.build :semester_id => semester.id
       end if o.semesters.empty?
     end

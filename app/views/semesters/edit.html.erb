@@ -1,56 +1,58 @@
 <%= content_for :title, "Редактирование нагрузки для группы #{@group.number}. #{@semester.title_text}" %>
 
-<%= simple_form_for resource, url: year_faculty_course_group_semester_path(@year, @faculty, @course, @group, @semester) do |f| %>
+<div class="rpz_info">
+  <%= simple_form_for resource, url: year_faculty_course_group_semester_path(@year, @faculty, @course, @group, @semester) do |f| %>
 
-  <table>
-    <thead>
-      <tr>
-        <th rowspan='2' class='cycle'>Цикл</th>
-        <th rowspan='2' class='discipline'>Дисциплина</th>
-        <th rowspan='2' class='chair'>Обеспечивающая<br/>кафедра</th>
-        <th rowspan='2' class='check'>Форма учета</th>
-        <th rowspan='2' class='training'>Вид обучения</th>
-        <th rowspan='2' class='total'>Всего часов</th>
-        <th colspan='<%= @semester.weeks_count %>'>Распределение занятий</th>
-      </tr>
-      <tr>
-        <% @semester.weeks.each do |week| %>
-          <th class='loading'><%= week.number %></th>
-        <% end %>
-      </tr>
-    </thead>
-    <tbody>
-      <% @semester.educations.group_by(&:cycle_code).each do |cycle_code, educations| %>
+    <table>
+      <thead>
         <tr>
-          <td rowspan='<%= educations.count + educations.flat_map(&:trainings).count + 1 %>' title='<%= educations.first.cycle_title %>'><%= cycle_code %></td>
+          <th rowspan='2' class='cycle'>Цикл</th>
+          <th rowspan='2' class='discipline'>Дисциплина</th>
+          <th rowspan='2' class='chair'>Обеспечивающая<br/>кафедра</th>
+          <th rowspan='2' class='check'>Форма учета</th>
+          <th rowspan='2' class='training'>Вид обучения</th>
+          <th rowspan='2' class='total'>Всего часов</th>
+          <th colspan='<%= @semester.weeks_count %>'>Распределение занятий</th>
         </tr>
-        <% educations.each do |education| %>
+        <tr>
+          <% @semester.weeks.each do |week| %>
+            <th class='loading'><%= week.number %></th>
+          <% end %>
+        </tr>
+      </thead>
+      <tbody>
+        <% @semester.educations.group_by(&:cycle_code).each do |cycle_code, educations| %>
           <tr>
-            <td rowspan='<%= education.trainings.count + 1 %>'><%= education.discipline_title %></td>
-            <td rowspan='<%= education.trainings.count + 1 %>' title='<%= education.chair_title %>'><%= education.chair_abbr %></td>
-            <td rowspan='<%= education.trainings.count + 1 %>'><%= education.checks.map(&:title).join('<br/>').html_safe %></td>
+            <td rowspan='<%= educations.count + educations.flat_map(&:trainings).count + 1 %>' title='<%= educations.first.cycle_title %>'><%= cycle_code %></td>
           </tr>
-
-          <% education.trainings.each do |training| %>
+          <% educations.each do |education| %>
             <tr>
-              <td><%= training.title %></td>
-              <td><%= training.planned_loading %></td>
-              <% @semester.weeks.each do |week| %>
-                <td>
-                  <%= f.fields_for "loading_values[#{training.loading_at(week).id}]", training.loading_at(week) do |loading_form| %>
-                    <%= loading_form.input :value  %>
-                  <% end %>
-                </td>
-              <% end %>
+              <td rowspan='<%= education.trainings.count + 1 %>'><%= education.discipline_title %></td>
+              <td rowspan='<%= education.trainings.count + 1 %>' title='<%= education.chair_title %>'><%= education.chair_abbr %></td>
+              <td rowspan='<%= education.trainings.count + 1 %>'><%= education.checks.map(&:title).join('<br/>').html_safe %></td>
             </tr>
+
+            <% education.trainings.each do |training| %>
+              <tr>
+                <td><%= training.title %></td>
+                <td><%= training.planned_loading %></td>
+                <% @semester.weeks.each do |week| %>
+                  <td>
+                    <%= f.fields_for "loading_values[#{training.loading_at(week).id}]", training.loading_at(week) do |loading_form| %>
+                      <%= loading_form.input :value, :as => :string  %>
+                    <% end %>
+                  </td>
+                <% end %>
+              </tr>
+            <% end %>
           <% end %>
         <% end %>
-      <% end %>
-    </tbody>
-  </table>
+      </tbody>
+    </table>
 
-  <div class="buttons">
-    <%= f.submit %>
-    <%= link_to t('cancel'), smart_resource_url %>
-  </div>
-<% end %>
+    <div class="buttons">
+      <%= f.submit %>
+      <%= link_to t('cancel'), smart_resource_url %>
+    </div>
+  <% end %>
+</div>
