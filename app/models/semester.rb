@@ -1,14 +1,14 @@
 # encoding: utf-8
 
 class Semester < ActiveRecord::Base
-  extend Enumerize
-
   attr_accessible :breaks_on, :ends_on, :starts_on
 
   belongs_to :year
 
   has_many :streams
   has_many :weeks
+  has_many :group_semesters
+  has_many :unstreamed_educations, through: :group_semesters, source: :educations, conditions: { stream_id: nil }
 
   has_one :starts_on_week, class_name: 'Week', conditions: proc { { starts_on: self.starts_on } }
   has_one :breaks_on_week, class_name: 'Week', conditions: proc { { starts_on: self.breaks_on } }
@@ -16,8 +16,6 @@ class Semester < ActiveRecord::Base
 
   validates_presence_of :breaks_on, :ends_on, :starts_on
   validate :check_for_monday
-
-  enumerize :title, :in => [:spring, :autumn], :predicates => true
 
   def to_s
     ''.tap do |s|
@@ -27,7 +25,8 @@ class Semester < ActiveRecord::Base
     end
   end
 
-private
+  private
+
   def check_for_monday
     errors.add :starts_on, 'не является понедельником' if self.starts_on.cwday != 1 && self.spring?
     errors.add :breaks_on, 'не является понедельником' if self.breaks_on.cwday != 1

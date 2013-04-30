@@ -9,7 +9,7 @@ class Education < ActiveRecord::Base
   belongs_to :stream
 
   has_many :checks,    dependent: :destroy
-  has_many :trainings, dependent: :destroy
+  has_many :trainings, dependent: :destroy, order: :title
 
   delegate :abbr, :title,  to: :chair, prefix: true
   delegate :group, to: :semester
