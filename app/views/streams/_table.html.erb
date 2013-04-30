@@ -1,0 +1,23 @@
+<table>
+  <% educations.each_with_index do |education, index| %>
+    <tr>
+      <td rowspan='<%= education.trainings.count + 1 %>' class="group_number">
+        <% if form %>
+          <%= check_box_tag "stream[education_ids][]", education.id, false, id: "stream_education_ids_#{education.id}_#{index}" %>
+          <%= label_tag "stream_education_ids_#{education.id}_#{index}", education.group.number %>
+        <% else %>
+          <%= education.group.number %>
+        <% end %>
+      </td>
+      <td rowspan='<%= education.trainings.count + 1 %>' class="discipline_title"><%= discipline.title %></td>
+      <td rowspan='<%= education.trainings.count + 1 %>' class="chair_abbr"><%= education.chair.abbr %>
+      <td rowspan='<%= education.trainings.count + 1 %>' class="check_kind"><%= education.checks.map(&:title).join('<br/>').html_safe %></td>
+    </tr>
+    <% education.trainings.each do |training| %>
+      <tr>
+        <td><%= training.title %></td>
+        <td><%= training.planned_loading %></td>
+      </tr>
+    <% end %>
+  <% end %>
+</table>
