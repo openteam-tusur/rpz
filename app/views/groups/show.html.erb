@@ -43,7 +43,7 @@
           </tr>
           <tr>
             <% semester.weeks.each do |week| %>
-              <th class='loading'><%= week.number %></th>
+              <th class='loading <%= week.break_week? ? 'break_week' : 'normal' %>'><%= week.number %></th>
             <% end %>
           </tr>
         </thead>
@@ -65,7 +65,7 @@
                   <td><%= training.planned_loading %></td>
                   <td><%= training.summ_loadings %></td>
                   <% semester.weeks.each do |week| %>
-                    <td><%= training.loading_at(week).value %></td>
+                    <td class='<%= week.break_week? ? 'break_week' : 'normal' %>'><%= training.loading_at(week).value %></td>
                   <% end %>
                 </tr>
               <% end %>
@@ -79,7 +79,7 @@
               <td><%= semester.summ_planned_loading %></td>
               <td><%= semester.summ_loading_value %></td>
               <% semester.weeks.each do |week| %>
-                <td><%= semester.summ_loading_value_at(week) %></td>
+                <td class='<%= week.break_week? ? 'break_week' : 'normal' %>'><%= semester.summ_loading_value_at(week) %></td>
               <% end %>
             </tr>
           </tfoot>

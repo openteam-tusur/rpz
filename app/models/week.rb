@@ -9,4 +9,8 @@ class Week < ActiveRecord::Base
   def title
     "#{number} неделя с #{I18n.l starts_on, :format => :long}"
   end
+
+  def break_week?
+    starts_on == semester.breaks_on_week.starts_on
+  end
 end

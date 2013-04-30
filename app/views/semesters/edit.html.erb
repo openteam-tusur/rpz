@@ -16,7 +16,7 @@
         </tr>
         <tr>
           <% @semester.weeks.each do |week| %>
-            <th class='loading'><%= week.number %></th>
+            <th class='loading <%= week.break_week? ? 'break_week' : 'normal' %>'><%= week.number %></th>
           <% end %>
         </tr>
       </thead>
@@ -37,7 +37,7 @@
                 <td><%= training.title %></td>
                 <td><%= training.planned_loading %></td>
                 <% @semester.weeks.each do |week| %>
-                  <td>
+                  <td class='<%= week.break_week? ? 'break_week' : 'normal' %>'>
                     <%= f.fields_for "loading_values[#{training.loading_at(week).id}]", training.loading_at(week) do |loading_form| %>
                       <%= loading_form.input :value, :as => :string  %>
                     <% end %>
