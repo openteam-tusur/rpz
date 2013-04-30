@@ -8,8 +8,10 @@ class Course < ActiveRecord::Base
   belongs_to :faculty
 
   has_many :groups, dependent: :destroy
-  has_many :group_semesters, source: :semesters, through: :groups
+  has_many :active_groups, class_name: 'Group', conditions: { archived: false }, order: :number
+  has_many :group_semesters, source: :semesters, through: :active_groups
   has_many :educations, through: :group_semesters
+  has_many :streams
 
   friendly_id :number
 end

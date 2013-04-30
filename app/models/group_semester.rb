@@ -14,6 +14,7 @@ class GroupSemester < ActiveRecord::Base
 
   scope :autumn, -> { joins(:semester).where('semesters.title' => :autumn) }
   scope :spring, -> { joins(:semester).where('semesters.title' => :spring) }
+  scope :by_semester_title, ->(title) { joins(:semester).where('semesters.title' => title) }
 
   delegate :title, :title_text, :to => :semester
 

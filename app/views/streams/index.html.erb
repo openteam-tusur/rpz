@@ -1,8 +1,8 @@
 <%= content_for :title, 'Список потоков' %>
 
 <ul>
-  <% @course.educations.group_by(&:discipline).each do |discipline, educations| %>
-    <% if true || educations.many? %>
+  <% @course.group_semesters.by_semester_title(params[:by_semester_title]).flat_map(&:educations).group_by(&:discipline).each do |discipline, educations| %>
+    <% if educations.many? %>
       <li>
         <%= discipline.title %>
         <ul>

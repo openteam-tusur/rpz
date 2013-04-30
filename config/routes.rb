@@ -2,8 +2,8 @@ Rpz::Application.routes.draw do
   resources :years do
     resources :faculties, :only => [:show] do
       resources :courses, :only => [:show] do
-        resources :semesters, only: [] do
-          resources :streams, only: :index
+        resources :streams, only: :index do
+          get '/:by_semester_title' => 'streams#index', :on => :collection, :constraints => { :by_semester_title => /autumn|spring/ }, :as => :semester
         end
 
         resources :groups, except: [:destroy] do

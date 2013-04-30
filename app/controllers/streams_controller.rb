@@ -4,8 +4,6 @@ class StreamsController < ApplicationController
   belongs_to :year
   belongs_to :faculty
   belongs_to :course
-  belongs_to :semester
 
-  def collection
-  end
+  has_scope :by_semester_title
 end
