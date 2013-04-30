@@ -55,6 +55,6 @@ class GroupSemester < ActiveRecord::Base
   def save_loading_values
     loading_values.each do |loading_id, value|
       Loading.find(loading_id).update_attribute(:value, value['value'])
-    end
+    end if loading_values
   end
 end

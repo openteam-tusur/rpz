@@ -4,18 +4,18 @@
   <fieldset>
     <%= f.simple_fields_for :autumn_semester do |as|%>
       <legend><%= as.object.title_text %></legend>
-      <%= as.input :starts_on, :as => :string, :input_html => { :class => 'datepicker' } %>
-      <%= as.input :breaks_on, :as => :string, :input_html => { :class => 'datepicker' } %>
-      <%= as.input :ends_on, :as => :string, :input_html => { :class => 'datepicker' } %>
+      <%= as.input :starts_on, :as => :date_picker %>
+      <%= as.input :breaks_on, :as => :date_picker %>
+      <%= as.input :ends_on,   :as => :date_picker %>
     <% end %>
   </fieldset>
 
   <fieldset>
     <%= f.simple_fields_for :spring_semester do |ss|%>
       <legend><%= ss.object.title_text %></legend>
-      <%= ss.input :starts_on, :as => :string, :input_html => { :class => 'datepicker' } %>
-      <%= ss.input :breaks_on, :as => :string, :input_html => { :class => 'datepicker' } %>
-      <%= ss.input :ends_on, :as => :string, :input_html => { :class => 'datepicker' } %>
+      <%= ss.input :starts_on, :as => :date_picker %>
+      <%= ss.input :breaks_on, :as => :date_picker %>
+      <%= ss.input :ends_on,   :as => :date_picker %>
     <% end %>
   </fieldset>
 
