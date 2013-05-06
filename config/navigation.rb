@@ -23,7 +23,9 @@ SimpleNavigation::Configuration.run do |navigation|
                 'Создание новой группы',
                 new_year_faculty_course_group_path(@year, @faculty, @course)
 
-              course.item :autumn, 'Потоки осеннего семестра', semester_year_faculty_course_streams_path(@year, @faculty, @course, by_semester_title: :autumn)
+              course.item :autumn, 'Потоки осеннего семестра', semester_year_faculty_course_streams_path(@year, @faculty, @course, by_semester_title: :autumn) do |stream|
+                stream.item :stream, "Поток &laquo;#{@stream.title}&raquo;", edit_year_faculty_course_stream_path(@year, @faculty, @course, @stream) if @stream
+              end
               course.item :spring, 'Потоки весеннего семестра', semester_year_faculty_course_streams_path(@year, @faculty, @course, by_semester_title: :spring)
 
               course.item :group, @group, year_faculty_course_group_path(@year, @faculty, @course, @group) do |group|
