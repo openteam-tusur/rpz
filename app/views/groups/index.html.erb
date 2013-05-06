@@ -4,10 +4,19 @@
   <%= content_for :title, "Группы #{@course.number} курса #{@faculty.abbr}" %>
 <% end %>
 
-<%= link_to t('autumn_streams'), semester_year_faculty_course_streams_path(@year, @faculty, @course, by_semester_title: 'autumn') %>
-<%= link_to t('spring_streams'), semester_year_faculty_course_streams_path(@year, @faculty, @course, by_semester_title: 'spring') %>
-<%= link_to t('archived_groups') + " (#{@course.groups.archived(:archived).count})",
-  archived_year_faculty_course_groups_path(@year, @faculty, @course) %>
+<ul>
+  <li>
+    <%= link_to t('autumn_streams'), semester_year_faculty_course_streams_path(@year, @faculty, @course, by_semester_title: 'autumn') %>
+  </li>
+  <li>
+    <%= link_to t('spring_streams'), semester_year_faculty_course_streams_path(@year, @faculty, @course, by_semester_title: 'spring') %>
+  </li>
+  <li>
+    <%= link_to t('archived_groups') + " (#{@course.groups.archived(:archived).count})",
+      archived_year_faculty_course_groups_path(@year, @faculty, @course) %>
+  </li>
+</ul>
+
 <%= link_to t('new_group'), new_year_faculty_course_group_path(@year, @faculty, @course), :class => 'new_link' %>
 
 <% if collection.any? %>
