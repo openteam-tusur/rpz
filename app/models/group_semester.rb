@@ -12,6 +12,7 @@ class GroupSemester < ActiveRecord::Base
 
   has_many :educations, dependent: :destroy, :order => 'cycle_code ASC'
   has_many :trainings, through: :educations
+  has_many :loadings, through: :trainings
 
   scope :autumn, -> { joins(:semester).where('semesters.title' => :autumn) }
   scope :spring, -> { joins(:semester).where('semesters.title' => :spring) }

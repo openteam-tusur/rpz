@@ -26,7 +26,7 @@
     <li><a href='#autumn' class='active'>Осенний семестр</a></li>
     <li><a href='#spring'>Весенний семестр</a></li>
   </ul>
-  <% @group.semesters.each do |semester| %>
+  <% @group.semesters.includes([:semester, :educations, :trainings, :loadings]).each do |semester| %>
     <div id='<%= semester.title %>' class="tabs_target">
       <%= link_to "Редактировать нагрузку", edit_year_faculty_course_group_semester_path(@year, @faculty, @course, @group, semester) %>
       <table>
