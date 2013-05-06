@@ -3,7 +3,7 @@
 <%= link_to 'Сроки семестров и контингент',
             change_verified_state_year_faculty_course_group_path(@year, @faculty, @course, @group),
             :title => @group.verified? ? t('verified') : t('unverified'),
-            :class => @group.verified? ? 'checked check_link' : 'unchecked check_link' %>
+            :class => @group.verified? ? 'checked check_link' : 'unchecked check_link' if can? :manage, Group %>
 
 <div><%= Group.human_attribute_name(:number) %>: <%= resource %></div>
 <div><%= Group.human_attribute_name(:course) %>: <%= "#{resource.course.number} курс" %></div>
@@ -14,11 +14,13 @@
 <div><%= Group.human_attribute_name(:speciality_title) %>: <%= resource.speciality_title %></div>
 <div><%= Group.human_attribute_name(:subspeciality_title) %>: <%= resource.subspeciality_title %></div>
 
-<%= link_to t('edit'), edit_resource_path %>
-<% if @group.archived? %>
-  <%= link_to t('unarchive'), change_archived_state_year_faculty_course_group_path(@year, @faculty, @course, @group), :confirm => t('are_you_sure') %>
-<% else %>
-  <%= link_to t('archive'), change_archived_state_year_faculty_course_group_path(@year, @faculty, @course, @group), :confirm => t('are_you_sure') %>
+<% if can? :manage, Group %>
+  <%= link_to t('edit'), edit_resource_path %>
+  <% if @group.archived? %>
+    <%= link_to t('unarchive'), change_archived_state_year_faculty_course_group_path(@year, @faculty, @course, @group), :confirm => t('are_you_sure') %>
+  <% else %>
+    <%= link_to t('archive'), change_archived_state_year_faculty_course_group_path(@year, @faculty, @course, @group), :confirm => t('are_you_sure') %>
+  <% end %>
 <% end %>
 
 <div class="rpz_info">

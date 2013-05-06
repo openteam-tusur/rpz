@@ -1,10 +1,12 @@
 <div class="item block">
   <%= link_to group, year_faculty_course_group_path(@year, @faculty, @course, group), :class => 'title' %>
 
-  <% if group.archived? %>
-    <%= link_to t('unarchive'), change_archived_state_year_faculty_course_group_path(@year, @faculty, @course, group), :confirm => t('are_you_sure') %>
-  <% else %>
-    <%= link_to t('archive'), change_archived_state_year_faculty_course_group_path(@year, @faculty, @course, group), :confirm => t('are_you_sure') %>
+  <% if can? :manage, Group %>
+    <% if group.archived? %>
+      <%= link_to t('unarchive'), change_archived_state_year_faculty_course_group_path(@year, @faculty, @course, group), :confirm => t('are_you_sure') %>
+    <% else %>
+      <%= link_to t('archive'), change_archived_state_year_faculty_course_group_path(@year, @faculty, @course, group), :confirm => t('are_you_sure') %>
+    <% end %>
   <% end %>
 
   <span>Сроки семестров и контингент <%= group.verified? ? 'выверены' : 'не выверены' %></span>

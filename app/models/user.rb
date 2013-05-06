@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
   sso_auth_user
 
   has_many :faculties, :through => :permissions, :source => :context, :source_type => 'Faculty', :uniq => true
+  has_many :streams, :through => :faculties
 
   searchable do
     boolean(:has_permissions) { permissions.any? }

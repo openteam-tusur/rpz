@@ -17,7 +17,7 @@
   </li>
 </ul>
 
-<%= link_to t('new_group'), new_year_faculty_course_group_path(@year, @faculty, @course), :class => 'new_link' %>
+<%= link_to t('new_group'), new_year_faculty_course_group_path(@year, @faculty, @course), :class => 'new_link' if can? :create, Group %>
 
 <% if collection.any? %>
   <%= render collection %>
