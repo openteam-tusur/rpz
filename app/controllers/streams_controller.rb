@@ -1,8 +1,6 @@
 class StreamsController < ApplicationController
   inherit_resources
 
-  actions :index, :create, :destroy
-
   belongs_to :year
   belongs_to :faculty
   belongs_to :course

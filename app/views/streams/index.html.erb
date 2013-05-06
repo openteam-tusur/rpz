@@ -6,6 +6,7 @@
     <% @streams.each do |stream| %>
       <li class="stream">
         <%= stream.title %>
+        <%= link_to t('edit'), edit_year_faculty_course_stream_path(@year, @faculty, @course, stream) %>
         <%= link_to t('remove'), year_faculty_course_stream_path(@year, @faculty, @course, stream), method: :delete %>
 
         <% stream.educations.group_by(&:discipline).each do |discipline, educations|  %>
