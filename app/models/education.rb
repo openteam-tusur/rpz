@@ -8,10 +8,13 @@ class Education < ActiveRecord::Base
   belongs_to :semester, class_name: 'GroupSemester', foreign_key: :group_semester_id
   belongs_to :stream
 
+  has_one :group, :through => :semester
   has_many :checks,    dependent: :destroy
   has_many :trainings, dependent: :destroy, order: :title
 
   delegate :abbr, :title,  to: :chair, prefix: true
-  delegate :group, to: :semester
   delegate :title, to: :discipline, prefix: true
+
+  scope :ordered_by_discipline, ->{ joins(:discipline).order('ascii(disciplines.title) ASC') }
+  scope :ordered_by_group,      ->{ joins(:group).order('groups.number ASC') }
 end

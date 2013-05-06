@@ -48,7 +48,7 @@
           </tr>
         </thead>
         <tbody>
-          <% semester.educations.group_by(&:cycle_code).each do |cycle_code, educations| %>
+          <% semester.educations.order('cycle_code ASC').group_by(&:cycle_code).each do |cycle_code, educations| %>
             <tr>
               <td rowspan='<%= educations.count + educations.flat_map(&:trainings).count + 1 %>' title='<%= educations.first.cycle_title %>'><%= cycle_code %></td>
             </tr>

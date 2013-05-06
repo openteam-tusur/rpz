@@ -10,7 +10,7 @@ class GroupSemester < ActiveRecord::Base
   belongs_to :ends_on_week, :class_name => "Week"
   belongs_to :semester
 
-  has_many :educations, dependent: :destroy, :order => 'cycle_code ASC'
+  has_many :educations, dependent: :destroy
   has_many :trainings, through: :educations
   has_many :loadings, through: :trainings
 

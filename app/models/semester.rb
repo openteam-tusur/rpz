@@ -29,6 +29,10 @@ class Semester < ActiveRecord::Base
     end
   end
 
+  def self.title_options
+   Hash[title.values.map{|v| [v.to_s, v.text]} ]
+  end
+
 private
   def check_for_monday
     errors.add :starts_on, 'не является понедельником' if self.starts_on.cwday != 1 && self.spring?

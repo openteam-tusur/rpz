@@ -1,0 +1,20 @@
+<%= simple_form_for [association_chain, resource].flatten, :html => { :class => 'stream_form' } do |f| %>
+  <%= f.input :semester_id, :as => :hidden %>
+  <ul>
+    <% resource.educations.ordered_by_group.each do |education| %>
+      <%= render :partial => "education_form", :locals => {
+        :course => education.group.course,
+        :courses => @faculty.courses,
+        :education => education,
+        :educations => education.semester.educations.ordered_by_discipline,
+        :group => education.group,
+        :groups => education.group.course.groups
+      } %>
+  <% end if resource.educations.any? %>
+</ul>
+  <%= link_to "Добавить группу", search_year_faculty_course_streams_path(@year, @faculty, @course), :class => 'new_link' %>
+  <div class="buttons">
+    <%= f.submit %>
+    <%= link_to t('cancel'), :back %>
+  </div>
+<% end %>

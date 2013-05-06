@@ -1,7 +1,12 @@
 <%= content_for :title, 'Список потоков' %>
 
+<%= link_to "Добавить новый поток", new_year_faculty_course_stream_path(@year, @faculty, @course, :season => params[:by_semester_title]), :class => 'new_link' %>
+
 <div class="streams">
   <h3>Сформированные потоки</h3>
+  <% if @streams.empty? %>
+    <div class="empty">Нет сформированных потоков</div>
+  <% end %>
   <ul>
     <% @streams.each do |stream| %>
       <li class="stream">
@@ -9,9 +14,7 @@
         <%= link_to t('edit'), edit_year_faculty_course_stream_path(@year, @faculty, @course, stream) %>
         <%= link_to t('remove'), year_faculty_course_stream_path(@year, @faculty, @course, stream), method: :delete %>
 
-        <% stream.educations.group_by(&:discipline).each do |discipline, educations|  %>
-          <%= render partial: 'table', locals: { discipline: discipline, educations: educations, form: false } %>
-        <% end %>
+        <%= render partial: 'table', locals: { educations: stream.educations.ordered_by_group, form: false } %>
       </li>
     <% end %>
   </ul>
@@ -19,6 +22,9 @@
 
 <div class="streams">
   <h3>Следующие дисциплины можно объединить в поток</h3>
+  <% if @course.unstreamed_educations(@semester.title).empty? %>
+    <div class="empty">Нет дисциплин, которые можно объединить в поток</div>
+  <% end %>
   <ul>
     <% @course.unstreamed_educations(@semester.title).group_by(&:discipline).each do |discipline, educations|  %>
       <% if educations.many? %>
@@ -27,7 +33,7 @@
           <%= form_tag year_faculty_course_streams_path(@year, @faculty, @course) do %>
             <%= hidden_field_tag 'stream[title]', educations.first.discipline.title %>
             <%= hidden_field_tag 'stream[semester_id]', @semester.id %>
-            <%= render partial: 'table', locals: { discipline: discipline, educations: educations, form: true } %>
+            <%= render partial: 'table', locals: { educations: educations.sort{ |a,b| a.group.number <=> b.group.number }, form: true } %>
             <%= submit_tag t('new_stream') %>
           <% end %>
         </li>

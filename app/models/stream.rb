@@ -7,8 +7,10 @@ class Stream < ActiveRecord::Base
   before_create :check_educations_count
   after_destroy :reset_education_stream_ids
 
+  has_many :courses, :through => :faculty
   has_many :educations
   has_many :trainings, through: :educations
+  has_one :faculty, :through => :course
 
   scope :by_semester_title, ->(title) { joins(:semester).where('semesters.title' => title) }
 

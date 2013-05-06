@@ -1,0 +1,6 @@
+<li class='education_item'>
+  <%= select_tag :course_number, options_from_collection_for_select(courses, :number, :number, course.try(:number)) %>
+  <%= select_tag :group_id, options_from_collection_for_select(groups.unshift(Group.new), :id, :number, group.try(:id)) %>
+  <%= select_tag 'stream[education_ids][]', options_from_collection_for_select(educations, :id, :discipline_title, education.try(:id)), :id => DateTime.now.to_i %>
+  <%= link_to t('remove'), '#', :class => 'remove_link' %>
+</li>

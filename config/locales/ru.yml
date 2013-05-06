@@ -56,10 +56,11 @@ ru:
 
     models:
       group:          группу
+      group_semester: нагрузку
       semester:       семестр
+      stream:         поток
       week:           учебная неделя
       year:           учебный год
-      group_semester: нагрузку
 
   enumerize:
     permission:

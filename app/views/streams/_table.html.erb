@@ -9,7 +9,7 @@
           <%= education.group.number %>
         <% end %>
       </td>
-      <td rowspan='<%= education.trainings.count + 1 %>' class="discipline_title"><%= discipline.title %></td>
+      <td rowspan='<%= education.trainings.count + 1 %>' class="discipline_title"><%= education.discipline.title %></td>
       <td rowspan='<%= education.trainings.count + 1 %>' class="chair_abbr"><%= education.chair.abbr %>
       <td rowspan='<%= education.trainings.count + 1 %>' class="check_kind"><%= education.checks.map(&:title).join('<br/>').html_safe %></td>
     </tr>

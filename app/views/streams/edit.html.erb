@@ -1,8 +1,3 @@
-<%= content_for :title, 'Изменение потока' %>
-<h2><%= @stream.title %></h2>
-<%= form_tag year_faculty_course_streams_path(@year, @faculty, @course) do %>
-  <% @stream.educations.group_by(&:discipline).each do |discipline, educations|  %>
-    <%= render partial: 'table', locals: { discipline: discipline, educations: educations, form: true } %>
-  <% end %>
-  <%= submit_tag t('new_stream') %>
-<% end %>
+<%= content_for :title, "Изменение потока &laquo;#{@stream.title}&raquo;".html_safe %>
+
+<%= render 'form' %>
