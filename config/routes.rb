@@ -21,5 +21,13 @@ Rpz::Application.routes.draw do
     resources :permissions, :only => [:new, :create, :destroy]
   end
 
+  resources :trainings, :only => [] do
+    get '/change_monitored_state' => 'trainings#change_monitored_state', :as => :change_monitored_state, :on => :member
+  end
+
+  resources :educations, :only => [] do
+    get '/change_gpo_alternative_state' => 'educations#change_gpo_alternative_state', :as => :change_gpo_alternative_state, :on => :member
+  end
+
   root :to => 'welcome#index'
 end

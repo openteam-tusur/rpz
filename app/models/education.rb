@@ -21,4 +21,9 @@ class Education < ActiveRecord::Base
   def gpo_alternative_title
     gpo_alternative? ? 'Альтернатива ГПО' : 'Обычный предмет'
   end
+
+  def change_gpo_alternative_state
+    self.gpo_alternative = (gpo_alternative? ? false : true)
+    self.save
+  end
 end

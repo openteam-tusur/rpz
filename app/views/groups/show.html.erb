@@ -61,13 +61,17 @@
                 <td rowspan='<%= education.trainings.count + 1 %>'><%= education.discipline_title %></td>
                 <td rowspan='<%= education.trainings.count + 1 %>' title='<%= education.chair_title %>'><%= education.chair_abbr %></td>
                 <td rowspan='<%= education.trainings.count + 1 %>'><%= education.checks.map(&:title).join('<br/>').html_safe %></td>
-                <td rowspan='<%= education.trainings.count + 1 %>'><%= education.gpo_alternative_title %></td>
+                <td rowspan='<%= education.trainings.count + 1 %>'>
+                  <%= render education %>
+                </td>
               </tr>
 
               <% education.trainings.each do |training| %>
                 <tr>
                   <td><%= training.title %></td>
-                  <td><%= training.monitored_title %></td>
+                  <td>
+                    <%= render training %>
+                  </td>
                   <td><%= training.planned_loading %></td>
                   <td><%= training.summ_loadings %></td>
                   <% semester.weeks.each do |week| %>
@@ -81,7 +85,7 @@
         <tr>
           <tfoot>
             <tr>
-              <td colspan='5'>Итого</td>
+              <td colspan='7'>Итого</td>
               <td><%= semester.summ_planned_loading %></td>
               <td><%= semester.summ_loading_value %></td>
               <% semester.weeks.each do |week| %>

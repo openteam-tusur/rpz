@@ -17,4 +17,9 @@ class Training < ActiveRecord::Base
   def monitored_title
     monitored? ? 'Требуется' : 'Не требуется'
   end
+
+  def change_monitored_state
+    self.monitored = (monitored? ? false : true)
+    self.save
+  end
 end
