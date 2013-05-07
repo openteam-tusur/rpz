@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130430051846) do
+ActiveRecord::Schema.define(:version => 20130507021823) do
 
   create_table "chairs", :force => true do |t|
     t.text     "title"
@@ -55,9 +55,10 @@ ActiveRecord::Schema.define(:version => 20130430051846) do
     t.integer  "chair_id"
     t.string   "cycle_code"
     t.text     "cycle_title"
-    t.datetime "created_at",        :null => false
-    t.datetime "updated_at",        :null => false
+    t.datetime "created_at",                           :null => false
+    t.datetime "updated_at",                           :null => false
     t.integer  "stream_id"
+    t.boolean  "gpo_alternative",   :default => false
   end
 
   add_index "educations", ["chair_id"], :name => "index_educations_on_chair_id"
@@ -163,6 +164,7 @@ ActiveRecord::Schema.define(:version => 20130430051846) do
     t.integer  "planned_loading"
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
+    t.boolean  "monitored"
   end
 
   add_index "trainings", ["education_id"], :name => "index_trainings_on_education_id"

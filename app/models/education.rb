@@ -1,7 +1,7 @@
 # encoding: utf-8
 
 class Education < ActiveRecord::Base
-  attr_accessible :cycle_code, :cycle_title
+  attr_accessible :cycle_code, :cycle_title, :gpo_alternative
 
   belongs_to :chair
   belongs_to :discipline
