@@ -162,9 +162,9 @@ ActiveRecord::Schema.define(:version => 20130507021823) do
     t.string   "kind"
     t.string   "title"
     t.integer  "planned_loading"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
-    t.boolean  "monitored"
+    t.datetime "created_at",                         :null => false
+    t.datetime "updated_at",                         :null => false
+    t.boolean  "monitored",       :default => false
   end
 
   add_index "trainings", ["education_id"], :name => "index_trainings_on_education_id"

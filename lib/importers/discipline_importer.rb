@@ -41,6 +41,7 @@ class DisciplineImporter < BaseImporter
       training = education.trainings.find_or_initialize_by_kind(training_attributes['kind'])
       training.title = training_attributes['kind_text']
       training.planned_loading = training_attributes['value']
+      training.monitored = true if training.kind == 'lecture'
       training.save!
     end
   end
