@@ -1,2 +1,2 @@
 <%= training.monitored_title %>
-<%= link_to t('edit'), change_monitored_state_training_path(training), :remote => true %>
+<%= link_to t('edit'), change_monitored_state_training_path(training), :remote => true if can? :manage, training %>

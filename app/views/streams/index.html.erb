@@ -1,6 +1,6 @@
 <%= content_for :title, 'Список потоков' %>
 
-<%= link_to "Добавить новый поток", new_year_faculty_course_stream_path(@year, @faculty, @course, :season => params[:by_semester_title]), :class => 'new_link' %>
+<%= link_to "Добавить новый поток", new_year_faculty_course_stream_path(@year, @faculty, @course, :season => params[:by_semester_title]), :class => 'new_link' if can? :create, @course.streams.new %>
 
 <div class="streams">
   <h3>Сформированные потоки</h3>

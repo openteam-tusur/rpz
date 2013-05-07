@@ -1,7 +1,7 @@
 <div class="item block">
   <%= link_to group, year_faculty_course_group_path(@year, @faculty, @course, group), :class => 'title' %>
 
-  <% if can? :manage, Group %>
+  <% if can? :manage, group %>
     <% if group.archived? %>
       <%= link_to t('unarchive'), change_archived_state_year_faculty_course_group_path(@year, @faculty, @course, group), :confirm => t('are_you_sure') %>
     <% else %>

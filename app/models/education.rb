@@ -9,6 +9,8 @@ class Education < ActiveRecord::Base
   belongs_to :stream
 
   has_one :group, :through => :semester
+  has_one :course, :through => :group
+  has_one :faculty, :through => :course
   has_many :checks,    dependent: :destroy
   has_many :trainings, dependent: :destroy, order: :title
 

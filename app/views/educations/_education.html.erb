@@ -1,2 +1,2 @@
 <%= education.gpo_alternative_title %>
-<%= link_to t('edit'), change_gpo_alternative_state_education_path(education), :remote => true %>
+<%= link_to t('edit'), change_gpo_alternative_state_education_path(education), :remote => true if can? :manage, education %>

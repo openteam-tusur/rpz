@@ -17,6 +17,12 @@ class Ability
       can [:update, :edit], GroupSemester do |group_semester|
         user.faculties.include? group_semester.group.course.faculty
       end
+      can :manage, Education do |education|
+        user.faculties.include? education.faculty
+      end
+      can :manage, Training do |training|
+        user.faculties.include? training.faculty
+      end
     end
   end
 end

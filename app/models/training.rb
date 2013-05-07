@@ -2,7 +2,10 @@
 
 class Training < ActiveRecord::Base
   attr_accessible :kind, :planned_loading, :title, :monitored
+
   belongs_to :education
+
+  has_one :faculty, :through => :education
   has_one :semester, through: :education
   has_many :loadings, dependent: :destroy
 
