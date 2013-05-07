@@ -17,4 +17,8 @@ class Education < ActiveRecord::Base
 
   scope :ordered_by_discipline, ->{ joins(:discipline).order('ascii(disciplines.title) ASC') }
   scope :ordered_by_group,      ->{ joins(:group).order('groups.number ASC') }
+
+  def gpo_alternative_title
+    gpo_alternative? ? 'Альтернатива ГПО' : 'Обычный предмет'
+  end
 end

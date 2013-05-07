@@ -13,4 +13,8 @@ class Training < ActiveRecord::Base
   def summ_loadings
     loadings.where(week_id: semester.weeks).map(&:value).compact.sum
   end
+
+  def monitored_title
+    monitored? ? 'Требуется' : 'Не требуется'
+  end
 end
