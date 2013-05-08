@@ -73,13 +73,6 @@ ru:
         autumn:     Осенний семестр
         spring:     Весенний семестр
 
-    training:
-      kind:
-        lecture: Лекции
-        practice: Практические занятия
-        lab: Лабораторные работы
-        csr: Курсовые проекты
-
   simple_form:
     placeholders:
       autumn_semester:
