@@ -9,7 +9,8 @@ class Stream < ActiveRecord::Base
 
   has_many :courses, :through => :faculty
   has_many :educations
-  has_many :trainings, through: :educations
+  has_many :trainings, :through => :educations
+  has_many :groups, :through => :educations, :order => 'groups.number'
   has_one :faculty, :through => :course
 
   scope :by_semester_title, ->(title) { joins(:semester).where('semesters.title' => title) }

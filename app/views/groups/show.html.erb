@@ -36,9 +36,10 @@
           <tr>
             <th rowspan='2' class='cycle'>Цикл</th>
             <th rowspan='2' class='discipline'>Дисциплина</th>
-            <th rowspan='2' class='chair'>Обеспечивающая<br/>кафедра</th>
+            <th rowspan='2' class='chair'>Обеспеч.<br/>кафедра</th>
+            <th rowspan='2' class='streams'>Потоки</th>
             <th rowspan='2' class='check'>Форма учета</th>
-            <th rowspan='2'>Алтернатива ГПО</th>
+            <th rowspan='2'>Альтернатива ГПО</th>
             <th rowspan='2' class='training'>Вид обучения</th>
             <th rowspan='2'>Мониторинг</th>
             <th rowspan='2' class='total'>Всего часов</th>
@@ -60,6 +61,7 @@
               <tr>
                 <td rowspan='<%= education.trainings.count + 1 %>'><%= education.discipline_title %></td>
                 <td rowspan='<%= education.trainings.count + 1 %>' title='<%= education.chair_title %>'><%= education.chair_abbr %></td>
+                <td rowspan='<%= education.trainings.count + 1 %>'><%= education.stream ? education.stream.groups.map{ |g| link_to(g.number, [@year, @faculty, @course, g]) }.join('<br/>').html_safe : '&mdash;'.html_safe %></td>
                 <td rowspan='<%= education.trainings.count + 1 %>'><%= education.checks.map(&:title).join('<br/>').html_safe %></td>
                 <td rowspan='<%= education.trainings.count + 1 %>'>
                   <%= render education %>
