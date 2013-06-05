@@ -1,6 +1,7 @@
 # encoding: utf-8
 
 class Training < ActiveRecord::Base
+  extend Enumerize
   attr_accessible :kind, :planned_loading, :title, :monitored
 
   belongs_to :education
@@ -8,6 +9,8 @@ class Training < ActiveRecord::Base
   has_one :faculty, :through => :education
   has_one :semester, through: :education
   has_many :loadings, dependent: :destroy
+
+  enumerize :kind, :in => {:lecture => 1, :practice => 2, :lab => 3, :csr => 4}, :scope => true, :predicates => true
 
   def loading_at(week)
     loadings.find_or_create_by_week_id(week.id)

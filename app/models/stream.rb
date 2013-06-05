@@ -15,7 +15,7 @@ class Stream < ActiveRecord::Base
   scope :by_semester_title, ->(title) { joins(:semester).where('semesters.title' => title) }
 
   def lecture_trainings
-    trainings.where(kind: 'lecture')
+    trainings.with_kind(:lecture)
   end
 
   private

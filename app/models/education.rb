@@ -12,7 +12,7 @@ class Education < ActiveRecord::Base
   has_one :course, :through => :group
   has_one :faculty, :through => :course
   has_many :checks,    dependent: :destroy
-  has_many :trainings, dependent: :destroy, order: :title
+  has_many :trainings, dependent: :destroy, order: :kind
 
   delegate :abbr, :title,  to: :chair, prefix: true
   delegate :title, to: :discipline, prefix: true

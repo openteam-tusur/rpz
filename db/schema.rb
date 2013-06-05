@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130507021823) do
+ActiveRecord::Schema.define(:version => 20130605052016) do
 
   create_table "chairs", :force => true do |t|
     t.text     "title"
@@ -159,12 +159,12 @@ ActiveRecord::Schema.define(:version => 20130507021823) do
 
   create_table "trainings", :force => true do |t|
     t.integer  "education_id"
-    t.string   "kind"
     t.string   "title"
     t.integer  "planned_loading"
     t.datetime "created_at",                         :null => false
     t.datetime "updated_at",                         :null => false
     t.boolean  "monitored",       :default => false
+    t.integer  "kind"
   end
 
   add_index "trainings", ["education_id"], :name => "index_trainings_on_education_id"

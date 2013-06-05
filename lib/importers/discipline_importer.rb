@@ -38,10 +38,10 @@ class DisciplineImporter < BaseImporter
 
   def self.create_trainings(education, options)
     options.each do |training_attributes|
-      training = education.trainings.find_or_initialize_by_kind(training_attributes['kind'])
+      training = education.trainings.find_or_initialize_by_kind(kind_to_i(training_attributes['kind']))
       training.title = training_attributes['kind_text']
       training.planned_loading = training_attributes['value']
-      training.monitored = true if training.kind == 'lecture'
+      training.monitored = true if training.kind_lecture?
       training.save!
     end
   end
@@ -52,6 +52,21 @@ class DisciplineImporter < BaseImporter
       check.title = check_attributes['kind_text']
       check.save!
     end
+  end
+
+  def kind_to_i(kind_str)
+      case kind_str
+      when 'lecture'
+        return 1
+      when 'practice'
+        return 2
+      when 'lab'
+        return 3
+      when 'csr'
+        return 4
+      else
+        return 0
+      end
   end
 
 end
