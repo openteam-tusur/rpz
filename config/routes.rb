@@ -27,6 +27,7 @@ Rpz::Application.routes.draw do
 
   resources :educations, :only => [] do
     get '/change_gpo_alternative_state' => 'educations#change_gpo_alternative_state', :as => :change_gpo_alternative_state, :on => :member
+    get '/change_active_state'          => 'educations#change_active_state',          :as => :change_active_state,          :on => :member
   end
 
   root :to => 'welcome#index'

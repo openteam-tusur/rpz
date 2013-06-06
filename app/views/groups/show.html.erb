@@ -59,7 +59,12 @@
             </tr>
             <% educations.each do |education| %>
               <tr>
-                <td rowspan='<%= education.trainings.count + 1 %>'><%= education.discipline_title %></td>
+                <td rowspan='<%= education.trainings.count + 1 %>'>
+                  <%= education.discipline_title %>
+                  <% if educations.map(&:cycle_code).select{ |e| e.match(/ДВ/) }.count > 1 %>
+                    (<%= education.active? ? 'выбрана' : 'не выбрана' %> <%= link_to "изменить", [:change_active_state, education] %>)
+                  <% end %>
+                </td>
                 <td rowspan='<%= education.trainings.count + 1 %>' title='<%= education.chair_title %>'><%= education.chair_abbr %></td>
                 <td rowspan='<%= education.trainings.count + 1 %>'><%= education.stream ? education.stream.groups.map{ |g| link_to(g.number, [@year, @faculty, @course, g]) }.join('<br/>').html_safe : '&mdash;'.html_safe %></td>
                 <td rowspan='<%= education.trainings.count + 1 %>'><%= education.checks.map(&:title).join('<br/>').html_safe %></td>
@@ -74,10 +79,10 @@
                   <td>
                     <%= render training %>
                   </td>
-                  <td><%= training.planned_loading %></td>
-                  <td><%= training.summ_loadings %></td>
+                  <td><%= education.active ? training.planned_loading : 0 %></td>
+                  <td><%= education.active ? training.summ_loadings : 0 %></td>
                   <% semester.weeks.each do |week| %>
-                    <td class='<%= week.break_week? ? 'break_week' : 'normal' %>'><%= training.loading_at(week).value %></td>
+                    <td class='<%= week.break_week? ? 'break_week' : 'normal' %>'><%= education.active ? training.loading_at(week).value : 0 %></td>
                   <% end %>
                 </tr>
               <% end %>

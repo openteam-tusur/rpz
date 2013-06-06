@@ -12,6 +12,7 @@
           <th rowspan='2' class='check'>Форма учета</th>
           <th rowspan='2' class='training'>Вид обучения</th>
           <th rowspan='2' class='total'>Всего часов</th>
+          <th rowspan='2'>Текущее кол-во часов</th>
           <th colspan='<%= @semester.weeks_count %>'>Распределение занятий</th>
         </tr>
         <tr>
@@ -21,7 +22,7 @@
         </tr>
       </thead>
       <tbody>
-        <% @semester.educations.order('cycle_code ASC').group_by(&:cycle_code).each do |cycle_code, educations| %>
+        <% @semester.educations.active.order('cycle_code ASC').group_by(&:cycle_code).each do |cycle_code, educations| %>
           <tr>
             <td rowspan='<%= educations.count + educations.flat_map(&:trainings).count + 1 %>' title='<%= educations.first.cycle_title %>'><%= cycle_code %></td>
           </tr>
@@ -35,7 +36,8 @@
             <% education.trainings.each do |training| %>
               <tr>
                 <td><%= training.title %></td>
-                <td><%= training.planned_loading %></td>
+                <td class='planned_total'><%= training.planned_loading %></td>
+                <td class='current_total'></td>
                 <% @semester.weeks.each do |week| %>
                   <td class='<%= week.break_week? ? 'break_week' : 'normal' %>'>
                     <%= f.fields_for "loading_values[#{training.loading_at(week).id}]", training.loading_at(week) do |loading_form| %>

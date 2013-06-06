@@ -41,11 +41,11 @@ class GroupSemester < ActiveRecord::Base
   end
 
   def summ_planned_loading
-    trainings.sum(&:planned_loading)
+    trainings.select{ |t| t.education.active? }.sum(&:planned_loading)
   end
 
   def summ_loading_value(weeks = weeks)
-    Loading.where(:training_id => trainings, :week_id => weeks).map(&:value).compact.sum
+    Loading.where(:training_id => trainings, :week_id => weeks).select{|l| l.education.active?}.map(&:value).compact.sum
   end
 
   def summ_loading_value_at(week)

@@ -13,12 +13,14 @@ class Education < ActiveRecord::Base
   has_one :faculty, :through => :course
   has_many :checks,    dependent: :destroy
   has_many :trainings, dependent: :destroy, order: :kind
+  has_many :loadings, :through => :trainings
 
   delegate :abbr, :title,  to: :chair, prefix: true
   delegate :title, to: :discipline, prefix: true
 
   scope :ordered_by_discipline, ->{ joins(:discipline).order('ascii(disciplines.title) ASC') }
   scope :ordered_by_group,      ->{ joins(:group).order('groups.number ASC') }
+  scope :active,                ->{ where(:active => true) }
 
   def gpo_alternative_title
     gpo_alternative? ? 'Альтернатива ГПО' : 'Обычный предмет'
@@ -26,6 +28,11 @@ class Education < ActiveRecord::Base
 
   def change_gpo_alternative_state
     self.gpo_alternative = (gpo_alternative? ? false : true)
+    self.save
+  end
+
+  def change_active_state
+    self.active = (active? ? false : true)
     self.save
   end
 end

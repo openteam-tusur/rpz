@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130605052016) do
+ActiveRecord::Schema.define(:version => 20130605085028) do
 
   create_table "chairs", :force => true do |t|
     t.text     "title"
@@ -59,6 +59,7 @@ ActiveRecord::Schema.define(:version => 20130605052016) do
     t.datetime "updated_at",                           :null => false
     t.integer  "stream_id"
     t.boolean  "gpo_alternative",   :default => false
+    t.boolean  "active",            :default => true
   end
 
   add_index "educations", ["chair_id"], :name => "index_educations_on_chair_id"
