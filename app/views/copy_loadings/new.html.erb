@@ -1,0 +1,10 @@
+<div class='copy_wrapper'>
+  <h3>Копирование нагрузки</h3>
+  <%= simple_form_for :copy_loading, :url => year_faculty_course_group_copy_path(@year, @faculty, @course, @group) do |f| %>
+    <%= f.input :copy_group_id, :label => 'Номер группы', :collection => @groups %>
+    <div class="buttons_wrapper">
+      <%= f.submit 'Скопировать' %>
+      <%= link_to "Отмена", '#' %>
+    </div>
+  <% end %>
+</div>

@@ -24,6 +24,7 @@
 <% end %>
 
 <div class="rpz_info">
+  <%= link_to "Скопировать нагрузку", year_faculty_course_group_new_copy_path(@year, @faculty, @course, @group), :remote => true, :class => 'copy_link' %>
   <ul class="tabs">
     <li><a href='#autumn' class='active'>Осенний семестр</a></li>
     <li><a href='#spring'>Весенний семестр</a></li>

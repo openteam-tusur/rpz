@@ -12,6 +12,8 @@ Rpz::Application.routes.draw do
           get '/change_archived_state' => 'groups#change_archived_state', :as => :change_archived_state, :on => :member
           get '/change_verified_state' => 'groups#change_verified_state', :as => :change_verified_state, :on => :member
           resources :semesters, only: [:edit, :update]
+          get 'copy/new' => 'copy_loadings#new', :as => :new_copy
+          post 'copy' => 'copy_loadings#create', :as => :copy
         end
       end
     end

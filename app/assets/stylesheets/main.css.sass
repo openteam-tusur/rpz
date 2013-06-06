@@ -306,3 +306,56 @@ form
       .check_kind
         width: 100px
 
+.copy_wrapper
+  +box-shadow(#000 2px 2px 10px)
+  background: rgba(#d9d9d9, 0.9)
+  display: none
+  height: 120px
+  left: 50%
+  margin-left: -150px
+  position: fixed
+  top: 0
+  width: 300px
+
+  h3
+    font-size: 16px
+    line-height: 18px
+    margin: 5px 0 0 0
+    text-align: center
+
+  form
+    +clearfix
+    padding: 15px 10px 10px
+
+    div.input
+      +clearfix
+
+    label
+      float: left
+      margin: 0 15px 0 0
+
+    select
+      float: left
+      width: 170px
+
+    .buttons_wrapper
+      margin: 20px 0 0 0
+      text-align: right
+
+      input, a
+        +border-radius(4px)
+        +inline-block
+        background: none
+        +background-image(linear-gradient(#fff, #ddd))
+        border: 1px solid #777
+        color: #060C39
+        font-family: 'PT Sans', sans-serif
+        font-size: 14px
+        line-height: 16px
+        margin: 0 5px
+        padding: 3px 5px
+        text-decoration: none
+
+        &:hover
+          cursor: pointer
+          +background-image(linear-gradient(#eee, #ccc))
