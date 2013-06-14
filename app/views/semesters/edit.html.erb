@@ -39,7 +39,7 @@
                 <td class='planned_total'><%= training.planned_loading %></td>
                 <td class='current_total'></td>
                 <% @semester.weeks.each do |week| %>
-                  <td class='<%= week.break_week? ? 'break_week' : 'normal' %>'>
+                  <td class='<%= week.break_week? ? 'break_week' : 'normal' %> weeknumber_<%= week.number %> week_cel'>
                     <%= f.fields_for "loading_values[#{training.loading_at(week).id}]", training.loading_at(week) do |loading_form| %>
                       <%= loading_form.input :value, :as => :string  %>
                     <% end %>
@@ -50,6 +50,16 @@
           <% end %>
         <% end %>
       </tbody>
+      <tfoot>
+        <tr>
+          <td colspan='5'>Итого</td>
+          <td class='planned_total'><%= @semester.summ_planned_loading %></td>
+          <td class='current_total'><%= @semester.summ_loading_value %></td>
+          <% @semester.weeks.each do |week| %>
+            <td class='<%= week.break_week? ? 'break_week' : 'normal' %> weeknumber_<%= week.number %> week_cel'><%= @semester.summ_loading_value_at(week) %></td>
+          <% end %>
+        </tr>
+      </tfoot>
     </table>
 
     <div class="buttons">
