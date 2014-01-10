@@ -31,7 +31,7 @@
   </ul>
   <% @group.semesters.includes([:semester, :educations, :trainings, :loadings]).each do |semester| %>
     <div id='<%= semester.title %>' class="tabs_target">
-      <%= link_to "Редактировать нагрузку", edit_year_faculty_course_group_semester_path(@year, @faculty, @course, @group, semester) %>
+      <%= link_to "Редактировать нагрузку", edit_year_faculty_course_group_semester_path(@year, @faculty, @course, @group, semester) if can? :edit, semester %>
       <table>
         <thead>
           <tr>
