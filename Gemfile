@@ -19,7 +19,6 @@ group :default do
   gem 'kaminari'
   gem 'nested_form'
   gem 'openteam-commons'
-  gem 'pg'
   gem 'progress_bar',         :require => false
   gem 'rails'
   gem 'russian'
