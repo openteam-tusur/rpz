@@ -41,7 +41,7 @@ class DisciplineImporter < BaseImporter
       training = education.trainings.find_or_initialize_by_kind(kind_to_i(training_attributes['kind']))
       training.title = training_attributes['kind_text']
       training.planned_loading = training_attributes['value']
-      training.monitored = true if training.kind_lecture?
+      training.monitored = true if training.lecture?
       training.save!
     end
   end
@@ -54,7 +54,7 @@ class DisciplineImporter < BaseImporter
     end
   end
 
-  def kind_to_i(kind_str)
+  def self.kind_to_i(kind_str)
       case kind_str
       when 'lecture'
         return 1
